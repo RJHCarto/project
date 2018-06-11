@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display buildings in 3D</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+<style>
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+    }
+
+    #menu a:last-child {
+        border: none;
+    }
+
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+
+    #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+    }
+
+    #menu a.active:hover {
+        background: #3074a4;
+    }
+</style>
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoicmpoYXJncmVhdmVzIiwiYSI6ImNpa3JmbDJiazAwMDF3Y20xMHoyaXowdDAifQ.78vWSemMDwn42TwMuxfODw';
+var map = new mapboxgl.Map({
+    style: 'mapbox://styles/rjhargreaves/cikrfp01a0006dcmb267liprj',
+    zoom: 12,
+    pitch: 60,
+    bearing: -31.2,
+    hash: true,
+    container: 'map'
+});
+
+// The 'building' layer in the mapbox-streets vector source contains building-height
+// data from OpenStreetMap.
+map.on('load', function() {
+//     map.addSource('trialSource', {
+//         type: 'geojson',
+//         data: {
+// "type": "FeatureCollection",
+// "name": "EatonBray",
+// "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+// "features": [
+// { "type": "Feature", "properties": { "OBJECTID": 1, "os_topo_toid": "osgb1000018608836", "os_topo_version": 4, "bha_processdate": "2017\/09\/30 00:00:00", "tileref": "SP9520", "abshmin": 110.5, "absh2": 114.69999694824219, "abshmax": 117.5, "relh2": 4.1999998092651367, "relhmax": 7.0, "bha_conf": 99 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -0.572675105930883, 51.885368577318211 ], [ -0.572600348175525, 51.885435107044707 ], [ -0.572616097398314, 51.885442491297944 ], [ -0.572568252327994, 51.88548507030486 ], [ -0.572476519563529, 51.885445293975778 ], [ -0.572599122488638, 51.885336185332378 ], [ -0.572675105930883, 51.885368577318211 ] ] ] ] } },
+// { "type": "Feature", "properties": { "OBJECTID": 2, "os_topo_toid": "osgb1000002311388213", "os_topo_version": 3, "bha_processdate": "2017\/09\/30 00:00:00", "tileref": "SP9520", "abshmin": 108.5, "absh2": 111.0, "abshmax": 114.0, "relh2": 2.5, "relhmax": 5.5, "bha_conf": 99 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -0.583264743397866, 51.909329512758504 ], [ -0.583286663702866, 51.909362865273174 ], [ -0.583160781834868, 51.909394708478388 ], [ -0.583138582283075, 51.909360992919495 ], [ -0.583259908145704, 51.90933071337048 ], [ -0.583264743397866, 51.909329512758504 ] ] ] ] } },
+// { "type": "Feature", "properties": { "OBJECTID": 3, "os_topo_toid": "osgb1000018598985", "os_topo_version": 5, "bha_processdate": "2017\/09\/30 00:00:00", "tileref": "SP9520", "abshmin": 105.90000152587891, "absh2": 109.59999847412109, "abshmax": 114.90000152587891, "relh2": 3.7000000476837158, "relhmax": 9.0, "bha_conf": 99 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -0.578455702065723, 51.909180087285002 ], [ -0.57852420312901, 51.909225242630669 ], [ -0.578570104310834, 51.909198822484001 ], [ -0.578624191832423, 51.909235441617106 ], [ -0.578508712141548, 51.909301483226194 ], [ -0.578454567889096, 51.909266661651728 ], [ -0.578467902308608, 51.909258730351951 ], [ -0.578397965050166, 51.909213018142943 ], [ -0.578455702065723, 51.909180087285002 ] ] ] ] } },
+// { "type": "Feature", "properties": { "OBJECTID": 4, "os_topo_toid": "osgb1000018621045", "os_topo_version": 5, "bha_processdate": "2017\/09\/30 00:00:00", "tileref": "SP9520", "abshmin": 117.90000152587891, "absh2": 120.59999847412109, "abshmax": 121.40000152587891, "relh2": 2.7000000476837158, "relhmax": 3.5, "bha_conf": 99 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -0.56036940017743, 51.881907990806397 ], [ -0.560320410935155, 51.881940660192491 ], [ -0.560251876201775, 51.881902956342209 ], [ -0.56030089415595, 51.881869388186068 ], [ -0.56036940017743, 51.881907990806397 ] ] ] ] } },
+// { "type": "Feature", "properties": { "OBJECTID": 5, "os_topo_toid": "osgb1000018608731", "os_topo_version": 4, "bha_processdate": "2017\/09\/30 00:00:00", "tileref": "SP9520", "abshmin": 115.40000152587891, "absh2": 121.40000152587891, "abshmax": 125.59999847412109, "relh2": 6.0, "relhmax": 10.199999809265137, "bha_conf": 99 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -0.565327767505991, 51.87746953668983 ], [ -0.565262880834288, 51.877540947700275 ], [ -0.565075517613834, 51.877475722215493 ], [ -0.565140404484453, 51.877404311309157 ], [ -0.565327767505991, 51.87746953668983 ] ] ] ] } }
+// ]
+// }       
+// });
+
+map.addLayer({
+    id: 'rjhargreaves.1u2m8gwd',
+    source: 'EatonBray-beyfc8',
+    type: 'fill-extrusion',
+    paint: {
+      'fill-extrusion-base': 0,
+      'fill-extrusion-height': {
+        'type': 'identity',
+        'property': 'relh2'
+      },
+      'fill-extrusion-opacity' : 0.6
+    }
+});
+});
+
+   
+</script>
+
+</body>
+</html>
