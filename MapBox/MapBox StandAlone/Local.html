@@ -90,10 +90,7 @@ var UCL = 'UCL.json';
 var Wavendon = 'Wavendon.json';
 var bbox;
 var geojson = $.getJSON("http://localhost:8000/EatonBray.geojson", function(data){
-
-console.log("geojson")
-console.dir(data)
-bbox = turf.bbox(geojson)
+bbox = turf.bbox(data)
     return data});
 
 
@@ -117,13 +114,13 @@ map.on('load', function() {
 
 map.on('rotate', function(x){
     if (map.getPitch() > 25){
-        map.setPaintProperty("EB", 'fill-extrusion-height',
+        map.setPaintProperty("EatonBray", 'fill-extrusion-height',
         {
             'type': 'identity',
             'property': 'relh2'
         });
     } else {
-         map.setPaintProperty("EB", 'fill-extrusion-height',
+         map.setPaintProperty("EatonBray", 'fill-extrusion-height',
         {
             'type': 'identity',
             'property': ''
@@ -133,13 +130,13 @@ map.on('rotate', function(x){
 
 map.on('rotate', function(x){
     if (map.getPitch() > 25){
-        map.setPaintProperty("Wav", 'fill-extrusion-height',
+        map.setPaintProperty("Wavendon", 'fill-extrusion-height',
         {
             'type': 'identity',
             'property': 'relh2'
         });
     } else {
-         map.setPaintProperty("Wav", 'fill-extrusion-height',
+         map.setPaintProperty("Wavendon", 'fill-extrusion-height',
         {
             'type': 'identity',
             'property': ''
@@ -166,7 +163,7 @@ map.on('rotate', function(x){
 //Adding layers
 
 map.addLayer({
-    id: 'EB',
+    id: 'EatonBray',
     source: 'EatonBray',
     type: 'fill-extrusion',
     paint: {
@@ -177,7 +174,7 @@ map.addLayer({
 });
 
 map.addLayer({
-    id: 'Wav',
+    id: 'Wavendon',
     source: 'Wavendon',
     type: 'fill-extrusion',
     paint: {
@@ -202,7 +199,7 @@ map.addLayer({
 
 //Layer nav function
 
-var toggleableLayerIds = [ 'EB', 'Wav', 'UCL' ];
+var toggleableLayerIds = [ 'EatonBray', 'Wavendon', 'UCL' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
