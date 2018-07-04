@@ -1,0 +1,61 @@
+{
+  "_from": "@mapbox/mapbox-gl-sync-move",
+  "_id": "@mapbox/mapbox-gl-sync-move@0.2.0",
+  "_inBundle": false,
+  "_integrity": "sha1-ARg1ugurnSbDELAzD1EgWLLAlX0=",
+  "_location": "/@mapbox/mapbox-gl-sync-move",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@mapbox/mapbox-gl-sync-move",
+    "name": "@mapbox/mapbox-gl-sync-move",
+    "escapedName": "@mapbox%2fmapbox-gl-sync-move",
+    "scope": "@mapbox",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@mapbox/mapbox-gl-sync-move/-/mapbox-gl-sync-move-0.2.0.tgz",
+  "_shasum": "011835ba0bab9d26c310b0330f512058b2c0957d",
+  "_spec": "@mapbox/mapbox-gl-sync-move",
+  "_where": "C:\\Users\\Richa\\Documents\\GitHub\\project\\MapBox\\MapBoxStandAlone",
+  "author": {
+    "name": "Mapbox"
+  },
+  "bugs": {
+    "url": "https://github.com/mapbox/mapbox-gl-sync-move/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Sync movement around two Mapbox GL JS maps",
+  "devDependencies": {
+    "budo": "^8.3.0",
+    "envify": "^3.4.0",
+    "eventemitter3": "^1.2.0",
+    "mapbox-gl": "^0.19.1",
+    "sinon": "^1.17.4",
+    "tape": "^4.5.1"
+  },
+  "homepage": "https://github.com/mapbox/mapbox-gl-sync-move#readme",
+  "keywords": [
+    "mapbox",
+    "mapboxgl"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "@mapbox/mapbox-gl-sync-move",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapbox/mapbox-gl-sync-move.git"
+  },
+  "scripts": {
+    "start": "budo test/manual.js --live --open -- -t envify",
+    "test": "tape test/mocked-maps.js"
+  },
+  "version": "0.2.0"
+}

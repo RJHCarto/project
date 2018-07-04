@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display buildings in 3D</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id='menu'>
+    <legend>Layers:</legend>
+    <input id='EatonBray' type='radio' name='rtoggle' checked='EatonBray' >
+    <label for='EatonBray'>Eaton Bray</label>
+    <input id='Wavendon' type='radio' name='rtoggle' value='Wavendon' >
+    <label for='Wavendon'>Wavendon</label>
+    <input id='UCL' type='radio' name='rtoggle' value='UCL' value='UCL'>
+    <label for='UCL'>UCL</label>
+</div>
+<div id='map'></div>
+<div id='mapB'></div>
+<div id='fitBounds' onclick='fit()'>fit to layer</div>
+<script src="js/map.js"></script>
+</body>
+</html>

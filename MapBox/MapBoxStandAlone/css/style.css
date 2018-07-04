@@ -1,0 +1,30 @@
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; right:0; width:50%; }
+    #mapB { position:absolute; top:0; bottom:0; left:0; width:50%; height:50%; }
+
+    #menu {
+        background-color: #ee8a65;
+        position: absolute;
+        z-index: 1;
+        top: 1em;
+        right: 1em;
+        border-radius: 0.2em;
+        padding: 0.7em;
+        width: 125px;
+        font-family: Helvetica, Arial, Sans-Serif;
+        color: #fff;
+        cursor: pointer;
+    }
+
+
+    #fitBounds {
+            background-color: #ee8a65;
+            font-family: Helvetica, Arial, Sans-Serif;
+            color: #fff;
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            padding: 0.7em;
+            border-radius: 0.2em;
+            cursor: pointer;
+   
