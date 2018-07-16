@@ -1,0 +1,50 @@
+[
+  {
+    "type": "vector",
+    "id": "rjhargreaves.acys3gd6",
+    "name": "UCL-8t3kzv",
+    "center": [
+      -0.16259506717324257,
+      51.52688217163086,
+      15
+    ],
+    "created": "2018-07-10T20:45:02.098Z",
+    "modified": "2018-07-10T20:45:01.806Z",
+    "visibility": "public",
+    "description": "",
+    "filesize": 67868200,
+    "status": "available"
+  },
+  {
+    "type": "vector",
+    "id": "rjhargreaves.2zpegl1r",
+    "name": "Wavendon-7obqhp",
+    "center": [
+      -0.6539198080380981,
+      52.02841802547019,
+      0
+    ],
+    "created": "2018-07-10T20:41:34.698Z",
+    "modified": "2018-07-10T20:41:34.476Z",
+    "visibility": "public",
+    "description": "",
+    "filesize": 9327255,
+    "status": "available"
+  },
+  {
+    "type": "vector",
+    "id": "rjhargreaves.dhlhzb0h",
+    "name": "EatonBray-1uvc03",
+    "center": [
+      -0.5844759072851899,
+      51.89258600824094,
+      0
+    ],
+    "created": "2018-07-10T20:41:27.898Z",
+    "modified": "2018-07-10T20:41:27.676Z",
+    "visibility": "public",
+    "description": "",
+    "filesize": 3531919,
+    "status": "available"
+  }
+]

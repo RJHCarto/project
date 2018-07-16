@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicmpoYXJncmVhdmVzIiwiYSI6ImNpa3JmbDJiazAwMDF3Y
 
 var map = new mapboxgl.Map({
     style: 'mapbox://styles/rjhargreaves/cjiok8itx27nf2so7p2492eba',
-    center: [-0.5850058794021606, 51.87403356997926],
+    center: [-0.593461, 51.876812],
     zoom: 16,
     pitch: 70,
     bearing: 0,
@@ -11,7 +11,7 @@ var map = new mapboxgl.Map({
 
 var mapB = new mapboxgl.Map({
     style: 'mapbox://styles/rjhargreaves/cjiok8itx27nf2so7p2492eba',
-    center: [-0.5850058794021606, 51.87403356997926],
+    center: [-0.593461, 51.876812],
     zoom: 16,
     pitch: 0,
     bearing: 0,
@@ -27,59 +27,26 @@ var EatonBray = 'data/EatonBray.json';
 var UCL = 'data/UCL.json';
 var Wavendon = 'data/Wavendon.json';
 var bbox;
-var bbox2;
-getBBOX('EatonBray');
-getJustJSON('EatonBray');
+getJSON('EatonBray');
 var layerId;
-var selectFeatures;
-
-// Draw Tools
-var draw = new MapboxDraw();
-mapB.addControl(draw, 'top-right');
-var drawnLine;
-
-var interPoints;
-
-function getIntersect() {
-    drawnLine = draw.getAll();
-    intersects = turf.lineIntersect(drawnLine, layerpoly);
-    interPoints = turf.multiPoint(intersects);
-    console.dir(intersects);
-    console.dir(interPoints);
-}
-
-function getJustJSON(layer) {
-    return new Promise ((resolve, reject) => {
-    coordsList = [];
-        $.getJSON(baseURL.concat(window[layer]), function (data) {
-            data.features.forEach(feature => {
-                coordsList.push(feature)
-                resolve()
-            });
-        });
-    });
-}
-
-var coordsList = [];
-var layerpoly = turf.featureCollection(coordsList)
-var intersects;
 
 
-function getBBOX(layer) {
+
+function getJSON(layer) {
     return new Promise ((resolve, reject) => {
         $.getJSON(baseURL.concat(window[layer]), function(data){
-            bbox = turf.bbox(data);
+            bbox = turf.bbox(data)
             resolve()
         });
 
     });
 
-}
+};
 
 function fit() {
     map.fitBounds(bbox, {padding: 20});
     mapB.fitBounds(bbox, {padding: 20});
-}
+};
 
 // define functions
 function switchLayer(layer) {
@@ -112,8 +79,7 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('Wavendon', 'visibility', 'none');
         mapB.setLayoutProperty('UCL', 'visibility', 'none');
     }
-    getJustJSON(layerId).then(()=> {getIntersect()});
-    getBBOX(layerId).then(()=> {fit()});
+    getJSON(layerId).then(()=> {fit()});
 
 }
 
@@ -287,16 +253,6 @@ mapB.on('load', function () {
         data: UCL
     });
 
-    // mapB.addSource('testLine', {
-    //     type: 'geojson',
-    //     data: testLine1
-    // });
-
-    // mapB.addSource('testIntersects', {
-    //     type: 'geojson',
-    //     data: intersects
-    // });
-
     mapB.addLayer({
         id: 'EatonBray',
         source: 'EatonBray',
@@ -307,7 +263,6 @@ mapB.on('load', function () {
             'fill-opacity': 0.6
         }
     });
-
 
     mapB.addLayer({
         id: 'Wavendon',
@@ -330,65 +285,8 @@ mapB.on('load', function () {
             'fill-opacity': 0.6
         }
     });
-
-    // mapB.addLayer({
-    //     id: 'testLine',
-    //     source: 'testLine',
-    //     type: 'line',
-    //     layout: {'visibility': 'visible'},
-    //     paint: {
-    //         'line-color': '#000000'
-    //     }
-    // });
-
-    // mapB.addLayer({
-    //     id: 'testIntersects',
-    //     source: 'testIntersects',
-    //     type: 'circle',
-    //     layout: {'visibility': 'visible'},
-    //     paint: {
-    //         "circle-radius": 10,
-    //         "circle-color": "#3887be"
-    //     }
-    // });
-
-    //Highlighting Layer
-
-    // mapB.addLayer({
-    //     id: 'EB',
-    //     source: 'EatonBray',
-    //     type: 'fill',
-    //     paint: {
-    //         'fill-color': '#000000',
-    //         'fill-opacity': 0.6
-    //     },
-    //     filter: ['in', 'os_topo_toid', '']
-    // });
 });
 
 
 
-//Working On Click Selector
-
-mapB.on('click', function(e) {
-    // set bbox as 5px reactangle area around clicked point
-    bbox2 = [[e.point.x - 50, e.point.y - 50], [e.point.x + 50, e.point.y + 50]];
-    selectFeatures = mapB.queryRenderedFeatures(bbox2, { layers: ['EatonBray'] });
-    var featureHeights = [];
-    selectFeatures.forEach(feature => {
-        featureHeights.push(feature.properties.relh2)
-    });
-
-
-    // Run through the selected features and set a filter
-    // to match features with unique FIPS codes to activate
-    // the `counties-highlighted` layer.
-    var filter = selectFeatures.reduce(function(memo, feature) {
-        memo.push(feature.properties.os_topo_toid);
-        return memo;
-    }, ['in', 'os_topo_toid']);
-
-    mapB.setFilter('EB', filter);
-    console.dir(featureHeights);
-});
 

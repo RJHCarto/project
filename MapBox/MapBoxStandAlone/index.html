@@ -6,6 +6,8 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.4/mapbox-gl-draw.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.4/mapbox-gl-draw.css' type='text/css' />
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -22,7 +24,9 @@
 </div>
 <div id='map'></div>
 <div id='mapB'></div>
-<div id='fitBounds' onclick='fit()'>fit to layer</div>
+<div id='fitBounds' onclick='fit()'>Fit</div>
+<div id='getLine' onclick='getIntersect()'>Intersect</div>
+<div id='iHeight' onclick='iHeight()'>Heights</div>
 <script src="js/map.js"></script>
 </body>
 </html>

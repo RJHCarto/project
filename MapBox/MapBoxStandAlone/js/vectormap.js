@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicmpoYXJncmVhdmVzIiwiYSI6ImNpa3JmbDJiazAwMDF3Y
 
 var map = new mapboxgl.Map({
     style: 'mapbox://styles/rjhargreaves/cjiok8itx27nf2so7p2492eba',
-    center: [-0.5850058794021606, 51.87403356997926],
+    center: [-0.593461, 51.876812],
     zoom: 16,
     pitch: 70,
     bearing: 0,
@@ -11,7 +11,7 @@ var map = new mapboxgl.Map({
 
 var mapB = new mapboxgl.Map({
     style: 'mapbox://styles/rjhargreaves/cjiok8itx27nf2so7p2492eba',
-    center: [-0.5850058794021606, 51.87403356997926],
+    center: [-0.593461, 51.876812],
     zoom: 16,
     pitch: 0,
     bearing: 0,
@@ -27,54 +27,27 @@ var EatonBray = 'data/EatonBray.json';
 var UCL = 'data/UCL.json';
 var Wavendon = 'data/Wavendon.json';
 var bbox;
-var bbox2;
-getBBOX('EatonBray');
-getJustJSON('EatonBray');
+getJSON('EatonBray');
 var layerId;
-var selectFeatures;
 
-// Draw Tools
-var draw = new MapboxDraw();
-mapB.addControl(draw, 'top-right');
-var drawnLine;
-
-var interPoints;
-
-function getIntersect() {
-    drawnLine = draw.getAll();
-    intersects = turf.lineIntersect(drawnLine, layerpoly);
-    interPoints = turf.multiPoint(intersects);
-    console.dir(intersects);
-    console.dir(interPoints);
-}
-
-function getJustJSON(layer) {
-    return new Promise ((resolve, reject) => {
-    coordsList = [];
-        $.getJSON(baseURL.concat(window[layer]), function (data) {
-            data.features.forEach(feature => {
-                coordsList.push(feature)
-                resolve()
-            });
-        });
-    });
-}
-
-var coordsList = [];
-var layerpoly = turf.featureCollection(coordsList)
-var intersects;
-
-
-function getBBOX(layer) {
+// function getBounds(layer){
+//     return new Promise ((resolve, reject) => {
+//         bbox = turf.bbox(layer)
+//         resolve()
+//     });
+// }
+//
+function getJSON(layer) {
     return new Promise ((resolve, reject) => {
         $.getJSON(baseURL.concat(window[layer]), function(data){
-            bbox = turf.bbox(data);
+            bbox = turf.bbox(data)
             resolve()
         });
 
     });
 
 }
+
 
 function fit() {
     map.fitBounds(bbox, {padding: 20});
@@ -112,8 +85,7 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('Wavendon', 'visibility', 'none');
         mapB.setLayoutProperty('UCL', 'visibility', 'none');
     }
-    getJustJSON(layerId).then(()=> {getIntersect()});
-    getBBOX(layerId).then(()=> {fit()});
+    getJSON(layerId).then(()=> {fit()});
 
 }
 
@@ -121,27 +93,25 @@ for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
 
-map.on('load', function () {
+map.on('load', function() {
     map.addSource('EatonBray', {
-        type: 'geojson',
-        data: EatonBray
+        type: 'vector',
+        url: 'mapbox://rjhargreaves.dhlhzb0h'
     });
 
     map.addSource('Wavendon', {
-        type: 'geojson',
-        data: Wavendon
+        type: 'vector',
+        url: 'mapbox://rjhargreaves.2zpegl1r'
     });
 
     map.addSource('UCL', {
-        type: 'geojson',
-        data: UCL
+        type: 'vector',
+        url: 'mapbox://rjhargreaves.75wbv2t4'
     });
-
-
 // Tracking testing
 //http://bl.ocks.org/boeric/f6ddea14600dc5093506
     var disable = false;
-    map.on("move", function () {
+    map.on("move", function() {
         if (!disable) {
             var center = map.getCenter();
             var zoom = map.getZoom();
@@ -155,7 +125,7 @@ map.on('load', function () {
         }
     })
 
-    mapB.on("move", function () {
+    mapB.on("move", function() {
         if (!disable) {
             var center = mapB.getCenter();
             var zoom = mapB.getZoom();
@@ -172,8 +142,8 @@ map.on('load', function () {
 
 // 3D rotate extrude for layers
 //
-//     map.on('rotate', function (x) {
-//         if (map.getPitch() > 25) {
+//     map.on('rotate', function(x){
+//         if (map.getPitch() > 25){
 //             map.setPaintProperty("EatonBray", 'fill-extrusion-height',
 //                 {
 //                     'type': 'identity',
@@ -188,8 +158,8 @@ map.on('load', function () {
 //         }
 //     });
 //
-//     map.on('rotate', function (x) {
-//         if (map.getPitch() > 25) {
+//     map.on('rotate', function(x){
+//         if (map.getPitch() > 25){
 //             map.setPaintProperty("Wavendon", 'fill-extrusion-height',
 //                 {
 //                     'type': 'identity',
@@ -204,8 +174,8 @@ map.on('load', function () {
 //         }
 //     });
 //
-//     map.on('rotate', function (x) {
-//         if (map.getPitch() > 25) {
+//     map.on('rotate', function(x){
+//         if (map.getPitch() > 25){
 //             map.setPaintProperty("UCL", 'fill-extrusion-height',
 //                 {
 //                     'type': 'identity',
@@ -225,6 +195,7 @@ map.on('load', function () {
     map.addLayer({
         id: 'EatonBray',
         source: 'EatonBray',
+        'source-layer': 'EatonBray-1uvc03',
         type: 'fill-extrusion',
         layout: {'visibility': 'visible'},
         paint: {
@@ -234,13 +205,14 @@ map.on('load', function () {
                 'property': 'relh2'
             },
             'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': 0.6
+            'fill-extrusion-opacity' : 0.6
         }
     });
 
     map.addLayer({
         id: 'Wavendon',
         source: 'Wavendon',
+        'source-layer': 'Wavendon-7obqhp',
         type: 'fill-extrusion',
         layout: {'visibility': 'none'},
         paint: {
@@ -250,13 +222,14 @@ map.on('load', function () {
                 'property': 'relh2'
             },
             'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': 0.6
+            'fill-extrusion-opacity' : 0.6
         }
     });
 
     map.addLayer({
         id: 'UCL',
         source: 'UCL',
+        'source-layer': 'ucl',
         type: 'fill-extrusion',
         layout: {'visibility': 'none'},
         paint: {
@@ -266,40 +239,32 @@ map.on('load', function () {
                 'property': 'relh2'
             },
             'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': 0.6
+            'fill-extrusion-opacity' : 0.6
         }
     });
+
 });
 
 mapB.on('load', function () {
     mapB.addSource('EatonBray', {
-        type: 'geojson',
-        data: EatonBray
+        type: 'vector',
+        url: 'mapbox://rjhargreaves.dhlhzb0h'
     });
 
     mapB.addSource('Wavendon', {
-        type: 'geojson',
-        data: Wavendon
+        type: 'vector',
+        url: 'mapbox://rjhargreaves.2zpegl1r'
     });
 
     mapB.addSource('UCL', {
-        type: 'geojson',
-        data: UCL
+        type: 'vector',
+        url: 'mapbox://rjhargreaves.75wbv2t4'
     });
-
-    // mapB.addSource('testLine', {
-    //     type: 'geojson',
-    //     data: testLine1
-    // });
-
-    // mapB.addSource('testIntersects', {
-    //     type: 'geojson',
-    //     data: intersects
-    // });
 
     mapB.addLayer({
         id: 'EatonBray',
         source: 'EatonBray',
+        'source-layer': 'EatonBray-1uvc03',
         type: 'fill',
         layout: {'visibility': 'visible'},
         paint: {
@@ -308,10 +273,10 @@ mapB.on('load', function () {
         }
     });
 
-
     mapB.addLayer({
         id: 'Wavendon',
         source: 'Wavendon',
+        'source-layer': 'Wavendon-7obqhp',
         type: 'fill',
         layout: {'visibility': 'none'},
         paint: {
@@ -323,6 +288,7 @@ mapB.on('load', function () {
     mapB.addLayer({
         id: 'UCL',
         source: 'UCL',
+        'source-layer': 'ucl',
         type: 'fill',
         layout: {'visibility': 'none'},
         paint: {
@@ -330,65 +296,7 @@ mapB.on('load', function () {
             'fill-opacity': 0.6
         }
     });
-
-    // mapB.addLayer({
-    //     id: 'testLine',
-    //     source: 'testLine',
-    //     type: 'line',
-    //     layout: {'visibility': 'visible'},
-    //     paint: {
-    //         'line-color': '#000000'
-    //     }
-    // });
-
-    // mapB.addLayer({
-    //     id: 'testIntersects',
-    //     source: 'testIntersects',
-    //     type: 'circle',
-    //     layout: {'visibility': 'visible'},
-    //     paint: {
-    //         "circle-radius": 10,
-    //         "circle-color": "#3887be"
-    //     }
-    // });
-
-    //Highlighting Layer
-
-    // mapB.addLayer({
-    //     id: 'EB',
-    //     source: 'EatonBray',
-    //     type: 'fill',
-    //     paint: {
-    //         'fill-color': '#000000',
-    //         'fill-opacity': 0.6
-    //     },
-    //     filter: ['in', 'os_topo_toid', '']
-    // });
 });
 
 
-
-//Working On Click Selector
-
-mapB.on('click', function(e) {
-    // set bbox as 5px reactangle area around clicked point
-    bbox2 = [[e.point.x - 50, e.point.y - 50], [e.point.x + 50, e.point.y + 50]];
-    selectFeatures = mapB.queryRenderedFeatures(bbox2, { layers: ['EatonBray'] });
-    var featureHeights = [];
-    selectFeatures.forEach(feature => {
-        featureHeights.push(feature.properties.relh2)
-    });
-
-
-    // Run through the selected features and set a filter
-    // to match features with unique FIPS codes to activate
-    // the `counties-highlighted` layer.
-    var filter = selectFeatures.reduce(function(memo, feature) {
-        memo.push(feature.properties.os_topo_toid);
-        return memo;
-    }, ['in', 'os_topo_toid']);
-
-    mapB.setFilter('EB', filter);
-    console.dir(featureHeights);
-});
 
