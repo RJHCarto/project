@@ -27,7 +27,7 @@ var EatonBray = 'data/EatonBray.json';
 var UCL = 'data/UCL.json';
 var Wavendon = 'data/Wavendon.json';
 var bbox;
-var bbox2;
+var point;
 getBBOX('EatonBray');
 getJustJSON('EatonBray');
 var layerId;
@@ -36,16 +36,18 @@ var selectFeatures;
 // Draw Tools
 var draw = new MapboxDraw();
 mapB.addControl(draw, 'top-right');
-var drawnLine;
-
-var interPoints;
+var coordsList = [];
+var interArray;
 
 function getIntersect() {
-    drawnLine = draw.getAll();
-    intersects = turf.lineIntersect(drawnLine, layerpoly);
-    interPoints = turf.multiPoint(intersects);
-    console.dir(intersects);
-    console.dir(interPoints);
+    var drawnLine = draw.getAll();
+    var layerpoly = turf.featureCollection(coordsList);
+    var intersects = turf.lineIntersect(drawnLine, layerpoly);
+    interArray = [];
+    for (var i = 0; i < intersects.features.length; i++){
+        interArray.push(intersects.features[i].geometry.coordinates)
+    }
+    console.dir(interArray);
 }
 
 function getJustJSON(layer) {
@@ -54,16 +56,11 @@ function getJustJSON(layer) {
         $.getJSON(baseURL.concat(window[layer]), function (data) {
             data.features.forEach(feature => {
                 coordsList.push(feature)
-                resolve()
             });
+            resolve(coordsList)
         });
     });
 }
-
-var coordsList = [];
-var layerpoly = turf.featureCollection(coordsList)
-var intersects;
-
 
 function getBBOX(layer) {
     return new Promise ((resolve, reject) => {
@@ -83,7 +80,7 @@ function fit() {
 
 // define functions
 function switchLayer(layer) {
-    var layerId = layer.target.id;
+    layerId = layer.target.id;
     // set layer id to a menu value
     // If id = UCL
     if (layerId == 'UCL') {
@@ -112,7 +109,7 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('Wavendon', 'visibility', 'none');
         mapB.setLayoutProperty('UCL', 'visibility', 'none');
     }
-    getJustJSON(layerId).then(()=> {getIntersect()});
+    getJustJSON(layerId).then((coordsList)=> {getIntersect()});
     getBBOX(layerId).then(()=> {fit()});
 
 }
@@ -353,7 +350,7 @@ mapB.on('load', function () {
     // });
 
     //Highlighting Layer
-
+    //
     // mapB.addLayer({
     //     id: 'EB',
     //     source: 'EatonBray',
@@ -370,25 +367,34 @@ mapB.on('load', function () {
 
 //Working On Click Selector
 
-mapB.on('click', function(e) {
-    // set bbox as 5px reactangle area around clicked point
-    bbox2 = [[e.point.x - 50, e.point.y - 50], [e.point.x + 50, e.point.y + 50]];
-    selectFeatures = mapB.queryRenderedFeatures(bbox2, { layers: ['EatonBray'] });
+function interHeights(e) {
+    var intersectedPoints = []
+    interArray.forEach(coords => {
+        console.log("coords")
+        console.dir(coords)
+        selectFeatures = mapB.queryRenderedFeatures(coords);
+        intersectedPoints.push(selectFeatures)
+        console.log("SelectFeature")
+        console.dir(selectFeatures)
+    });
+    console.log("intersectedPoints")
+    console.dir(intersectedPoints);
     var featureHeights = [];
-    selectFeatures.forEach(feature => {
+    intersectedPoints.forEach(feature => {
         featureHeights.push(feature.properties.relh2)
     });
 
 
-    // Run through the selected features and set a filter
-    // to match features with unique FIPS codes to activate
-    // the `counties-highlighted` layer.
-    var filter = selectFeatures.reduce(function(memo, feature) {
-        memo.push(feature.properties.os_topo_toid);
-        return memo;
-    }, ['in', 'os_topo_toid']);
-
-    mapB.setFilter('EB', filter);
+    // // Run through the selected features and set a filter
+    // // to match features with unique FIPS codes to activate
+    // // the `counties-highlighted` layer.
+    // var filter = selectFeatures.reduce(function(memo, feature) {
+    //     memo.push(feature.properties.os_topo_toid);
+    //     return memo;
+    // }, ['in', 'os_topo_toid']);
+    //
+    // mapB.setFilter('EB', filter);
+    console.log("featureHeights")
     console.dir(featureHeights);
-});
+};
 
