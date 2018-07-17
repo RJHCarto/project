@@ -18,7 +18,15 @@ var mapB = new mapboxgl.Map({
     container: 'mapB'
 });
 
-var rtoggle = 'EatonBray'
+/**
+ * Keeping track of the selected layer
+ * @type {null}
+ */
+let SELECTED_LAYER_BBOX = null;
+let SELECTED_LAYER_JSON = null;
+let SELECTED_LAYER_ID = null;
+
+//var rtoggle = 'EatonBray'
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
 var baseURL = 'http://localhost:8000/';
@@ -26,12 +34,13 @@ var data = 'data'
 var EatonBray = 'data/EatonBray.json';
 var UCL = 'data/UCL.json';
 var Wavendon = 'data/Wavendon.json';
-var bbox;
+//var bbox;
 var point;
-getBBOX('EatonBray');
-getJustJSON('EatonBray');
 var layerId;
 var selectFeatures;
+
+/*getBBOX('EatonBray');
+getLayerGeoJSON('EatonBray');*/
 
 // Draw Tools
 var draw = new MapboxDraw();
@@ -39,51 +48,115 @@ mapB.addControl(draw, 'top-right');
 var coordsList = [];
 var interArray;
 
+
+function bboxFromLine() {
+    console.log(" -- bboxFromLine -- ");
+    let bbox = turf.bbox(draw.getAll());
+    console.log(bbox);
+    return bbox;
+}
+
 function getIntersect() {
+    console.log(" -- getIntersect -- ")
     var drawnLine = draw.getAll();
-    var layerpoly = turf.featureCollection(coordsList);
-    var intersects = turf.lineIntersect(drawnLine, layerpoly);
+    var layerFeatures = turf.featureCollection(SELECTED_LAYER_JSON.features);
+    var intersectingFeatures = turf.lineIntersect(drawnLine, layerFeatures);
     interArray = [];
-    for (var i = 0; i < intersects.features.length; i++){
-        interArray.push(intersects.features[i].geometry.coordinates)
+    for (var i = 0; i < intersectingFeatures.features.length; i++) {
+        interArray.push(intersectingFeatures.features[i].geometry.coordinates)
     }
     console.dir(interArray);
+
+    //map.on('render', interHeights);
+    //map.resize();
 }
 
-function getJustJSON(layer) {
-    return new Promise ((resolve, reject) => {
-    coordsList = [];
+function mapLoaded() {
+    console.log(map.loaded())
+    return map.loaded()
+}
+
+function interHeights() {
+    if (!map.loaded()) {
+        console.log("NOT LOADED")
+        return;
+    }
+
+    //map.off('render', interHeights)
+    console.log(" -- interHeights -- ");
+    console.log("There are " + interArray.length + " intersecting points")
+    var selectFeatures = [];
+    var intersectedFeatures = interArray.forEach(coords => {
+        pixelCoords = map.project(coords);
+        var bbox = [[pixelCoords.x - 10, pixelCoords.y - 10], [pixelCoords.x + 10, pixelCoords.y + 10]];
+        selectFeatures.push(mapB.queryRenderedFeatures(pixelCoords, {layers: [SELECTED_LAYER_ID]}));
+
+    });
+
+    console.log('SELECTED')
+    console.dir(selectFeatures)
+
+
+    // var featureHeights = [];
+    // intersectedPoints.forEach(feature => {
+    //     featureHeights.push(feature.properties.relh2)
+    // });
+
+
+    // // Run through the selected features and set a filter
+    // // to match features with unique FIPS codes to activate
+    // // the `counties-highlighted` layer.
+    // var filter = selectFeatures.reduce(function(memo, feature) {
+    //     memo.push(feature.properties.os_topo_toid);
+    //     return memo;
+    // }, ['in', 'os_topo_toid']);
+    //
+    // mapB.setFilter('EB', filter);
+    // console.log("featureHeights")
+    // console.dir(featureHeights);
+}
+
+/**
+ * Return the geoJSON object for the selected layer.
+ * @param layer
+ * @returns {Promise<any>}
+ */
+function getLayerGeoJSON(layer) {
+    console.log(" -- getLayerGeoJSON --")
+    return new Promise((resolve, reject) => {
+        coordsList = [];
         $.getJSON(baseURL.concat(window[layer]), function (data) {
-            data.features.forEach(feature => {
-                coordsList.push(feature)
-            });
-            resolve(coordsList)
+            resolve(data)
         });
     });
 }
 
-function getBBOX(layer) {
-    return new Promise ((resolve, reject) => {
-        $.getJSON(baseURL.concat(window[layer]), function(data){
-            bbox = turf.bbox(data);
-            resolve()
-        });
-
+function bboxFromJSON(json) {
+    return new Promise((resolve, reject) => {
+        resolve(turf.bbox(json));
     });
-
 }
 
-function fit() {
-    map.fitBounds(bbox, {padding: 20});
-    mapB.fitBounds(bbox, {padding: 20});
+function coordsFromJSON(json) {
+    return json.features.forEach(feature => {
+        return feature;
+    })
+}
+
+function fit(bbox) {
+    let bboxToUse = bbox || SELECTED_LAYER_BBOX;
+    map.fitBounds(bboxToUse, {padding: 20});
+    mapB.fitBounds(bboxToUse, {padding: 20});
 }
 
 // define functions
 function switchLayer(layer) {
-    layerId = layer.target.id;
+    console.dir(layer)
+    SELECTED_LAYER_ID = layer;
+    //layerId = layer.target.id;
     // set layer id to a menu value
     // If id = UCL
-    if (layerId == 'UCL') {
+    if (layer == 'UCL') {
         map.setLayoutProperty('EatonBray', 'visibility', 'none');
         map.setLayoutProperty('Wavendon', 'visibility', 'none');
         map.setLayoutProperty('UCL', 'visibility', 'visible');
@@ -92,7 +165,7 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('UCL', 'visibility', 'visible');
     }
     // If id = Wavendon
-    if (layerId == 'Wavendon') {
+    if (layer == 'Wavendon') {
         map.setLayoutProperty('EatonBray', 'visibility', 'none');
         map.setLayoutProperty('Wavendon', 'visibility', 'visible');
         map.setLayoutProperty('UCL', 'visibility', 'none');
@@ -101,7 +174,7 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('UCL', 'visibility', 'none');
     }
     // Else id = EatonBray
-    if (layerId == 'EatonBray'){
+    if (layer == 'EatonBray') {
         map.setLayoutProperty('EatonBray', 'visibility', 'visible');
         map.setLayoutProperty('Wavendon', 'visibility', 'none');
         map.setLayoutProperty('UCL', 'visibility', 'none');
@@ -109,12 +182,21 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('Wavendon', 'visibility', 'none');
         mapB.setLayoutProperty('UCL', 'visibility', 'none');
     }
-    getJustJSON(layerId).then((coordsList)=> {getIntersect()});
-    getBBOX(layerId).then(()=> {fit()});
+    getLayerGeoJSON(layer).then((json) => {
+        console.dir(json)
+        SELECTED_LAYER_JSON = json;
+        console.log("SELECTED LAYER COORDS CHANGED")
+        bboxFromJSON(json).then((bbox) => {
+            SELECTED_LAYER_BBOX = bbox;
+            fit(bbox)
+        });
+    });
 }
 
 for (var i = 0; i < inputs.length; i++) {
-    inputs[i].onclick = switchLayer;
+    inputs[i].onclick = (e) => {
+        switchLayer(e.target.id)
+    };
 }
 
 // Tracking testing
@@ -221,7 +303,7 @@ map.on('load', function () {
         id: 'EatonBray',
         source: 'EatonBray',
         type: 'fill-extrusion',
-        layout: {'visibility': 'visible'},
+        layout: {'visibility': 'none'},
         paint: {
             'fill-extrusion-color': '#008080',
             'fill-extrusion-height': {
@@ -296,7 +378,7 @@ mapB.on('load', function () {
         id: 'EatonBray',
         source: 'EatonBray',
         type: 'fill',
-        layout: {'visibility': 'visible'},
+        layout: {'visibility': 'none'},
         paint: {
             'fill-color': '#008080',
             'fill-opacity': 0.6
@@ -325,6 +407,12 @@ mapB.on('load', function () {
             'fill-opacity': 0.6
         }
     });
+
+
+    /**
+     * Switch the default layer on
+     */
+    switchLayer('EatonBray');
 
     // mapB.addLayer({
     //     id: 'testLine',
@@ -363,35 +451,5 @@ mapB.on('load', function () {
 
 //Working On Click Selector
 
-function interHeights() {
-    var intersectedPoints = [];
-    interArray.forEach(coords => {
-        console.log("coords");
-        console.dir(coords);
-        selectFeatures = mapB.queryRenderedFeatures(coords);
-        intersectedPoints.push(selectFeatures);
-        console.log("SelectFeature");
-        console.dir(selectFeatures)
-    });
-    console.log("intersectedPoints");
-    console.dir(intersectedPoints);
-    // var featureHeights = [];
-    // intersectedPoints.forEach(feature => {
-    //     featureHeights.push(feature.properties.relh2)
-    // });
-
-
-    // // Run through the selected features and set a filter
-    // // to match features with unique FIPS codes to activate
-    // // the `counties-highlighted` layer.
-    // var filter = selectFeatures.reduce(function(memo, feature) {
-    //     memo.push(feature.properties.os_topo_toid);
-    //     return memo;
-    // }, ['in', 'os_topo_toid']);
-    //
-    // mapB.setFilter('EB', filter);
-    // console.log("featureHeights")
-    // console.dir(featureHeights);
-}
 
 
