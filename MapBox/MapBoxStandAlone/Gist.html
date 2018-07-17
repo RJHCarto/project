@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display buildings in 3D</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.4/mapbox-gl-draw.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.4/mapbox-gl-draw.css' type='text/css' />
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body { margin:0; padding:0; }
+        #mapB { position:absolute; top:0; bottom:0; left:0; width:100%; }
+
+
+        #fitBounds {
+            background-color: #ee8a65;
+            font-family: Helvetica, Arial, Sans-Serif;
+            color: #fff;
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            padding: 0.7em;
+            border-radius: 0.2em;
+            cursor: pointer;
+        }
+
+        #getLine {
+            background-color: #ee8a65;
+            font-family: Helvetica, Arial, Sans-Serif;
+            color: #fff;
+            position: absolute;
+            top: 5em;
+            left: 1em;
+            padding: 0.7em;
+            border-radius: 0.2em;
+            cursor: pointer;
+        }
+
+        #iHeight {
+            background-color: #ee8a65;
+            font-family: Helvetica, Arial, Sans-Serif;
+            color: #fff;
+            position: absolute;
+            top: 10em;
+            left: 1em;
+            padding: 0.7em;
+            border-radius: 0.2em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id='mapB'></div>
+<div id='fitBounds' onclick='fit()'>Fit</div>
+<div id='getLine' onclick='getIntersect()'>Intersect</div>
+<div id='iHeight' onclick='interHeights()'>Heights</div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmpoYXJncmVhdmVzIiwiYSI6ImNpa3JmbDJiazAwMDF3Y20xMHoyaXowdDAifQ.78vWSemMDwn42TwMuxfODw';
+
+    var mapB = new mapboxgl.Map({
+        style: 'mapbox://styles/rjhargreaves/cjiok8itx27nf2so7p2492eba',
+        center: [-0.5850058794021606, 51.87403356997926],
+        zoom: 16,
+        pitch: 0,
+        bearing: 0,
+        container: 'mapB'
+    });
+
+    /**
+     * Keeping track of the selected layer
+     * @type {null}
+     */
+    let SELECTED_LAYER_BBOX = null;
+    let SELECTED_LAYER_JSON = null;
+    let SELECTED_LAYER_ID = null;
+
+
+    var EatonBray = 'https://raw.githubusercontent.com/RJHCarto/project/master/MapBox/MapBoxStandAlone/data/JSFiddle.json';
+
+
+    // Draw Tools
+    var draw = new MapboxDraw();
+    mapB.addControl(draw, 'top-right');
+    var coordsList = [];
+    var interArray;
+
+
+
+    function getIntersect() {
+        console.log(" -- getIntersect -- ")
+        var drawnLine = draw.getAll();
+        var layerFeatures = turf.featureCollection(SELECTED_LAYER_JSON.features);
+        var intersectingFeatures = turf.lineIntersect(drawnLine, layerFeatures);
+        interArray = [];
+        for (var i = 0; i < intersectingFeatures.features.length; i++) {
+            interArray.push(intersectingFeatures.features[i].geometry.coordinates)
+        }
+        console.dir(interArray);
+
+        mapB.on('render', interHeights);
+        mapB.resize();
+    }
+    //
+    // function mapLoaded() {
+    //     console.log(mapB.loaded())
+    //     return mapB.loaded()
+    // }
+
+    function interHeights() {
+        mapB.off('render', interHeights)
+        console.log(" -- interHeights -- ");
+        console.log("There are " + interArray.length + " intersecting points")
+        var selectFeatures = [];
+        interArray.forEach(coords => {
+            pixelCoords = mapB.project(coords);
+            var bbox = [[pixelCoords.x - 10, pixelCoords.y - 10], [pixelCoords.x + 10, pixelCoords.y + 10]];
+            selectFeatures.push(mapB.queryRenderedFeatures(pixelCoords, {layers: [SELECTED_LAYER_ID]}));
+
+        });
+
+        console.log('SELECTED')
+        console.dir(selectFeatures)
+
+    }
+
+    /**
+     * Return the geoJSON object for the selected layer.
+     * @param layer
+     * @returns {Promise<any>}
+     */
+    function getLayerGeoJSON(layer) {
+        console.log(" -- getLayerGeoJSON --")
+        return new Promise((resolve, reject) => {
+            coordsList = [];
+            $.getJSON(window[layer], function (data) {
+                resolve(data)
+            });
+        });
+    }
+
+    function bboxFromJSON(json) {
+        return new Promise((resolve, reject) => {
+            resolve(turf.bbox(json));
+        });
+    }
+
+    // function coordsFromJSON(json) {
+    //     return json.features.forEach(feature => {
+    //         return feature;
+    //     })
+    // }
+
+    function fit(bbox) {
+        let bboxToUse = bbox || SELECTED_LAYER_BBOX;
+        mapB.fitBounds(bboxToUse, {padding: 20});
+    }
+
+    // define functions
+    function switchLayer(layer) {
+        console.dir(layer)
+        SELECTED_LAYER_ID = layer;
+        getLayerGeoJSON(layer).then((json) => {
+            console.dir(json)
+            SELECTED_LAYER_JSON = json;
+            console.log("SELECTED LAYER COORDS CHANGED")
+            bboxFromJSON(json).then((bbox) => {
+                SELECTED_LAYER_BBOX = bbox;
+                fit(bbox)
+            });
+        });
+    }
+
+    mapB.on('load', function () {
+        mapB.addSource('EatonBray', {
+            type: 'geojson',
+            data: EatonBray
+        });
+
+        mapB.addLayer({
+            id: 'EatonBray',
+            source: 'EatonBray',
+            type: 'fill',
+            layout: {'visibility': 'visible'},
+            paint: {
+                'fill-color': '#008080',
+                'fill-opacity': 0.6
+            }
+        });
+
+        /**
+         * Switch the default layer on
+         */
+        switchLayer('EatonBray');
+
+    });
+
+</script>
+</body>
+</html>

@@ -26,7 +26,7 @@ let SELECTED_LAYER_BBOX = null;
 let SELECTED_LAYER_JSON = null;
 let SELECTED_LAYER_ID = null;
 
-//var rtoggle = 'EatonBray'
+
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
 var baseURL = 'http://localhost:8000/';
@@ -34,10 +34,8 @@ var data = 'data'
 var EatonBray = 'data/EatonBray.json';
 var UCL = 'data/UCL.json';
 var Wavendon = 'data/Wavendon.json';
-//var bbox;
 var point;
 var layerId;
-var selectFeatures;
 
 /*getBBOX('EatonBray');
 getLayerGeoJSON('EatonBray');*/
@@ -49,12 +47,12 @@ var coordsList = [];
 var interArray;
 
 
-function bboxFromLine() {
-    console.log(" -- bboxFromLine -- ");
-    let bbox = turf.bbox(draw.getAll());
-    console.log(bbox);
-    return bbox;
-}
+// function bboxFromLine() {
+//     console.log(" -- bboxFromLine -- ");
+//     let bbox = turf.bbox(draw.getAll());
+//     console.log(bbox);
+//     return bbox;
+// }
 
 function getIntersect() {
     console.log(" -- getIntersect -- ")
@@ -67,27 +65,22 @@ function getIntersect() {
     }
     console.dir(interArray);
 
-    //map.on('render', interHeights);
-    //map.resize();
+    mapB.on('render', interHeights);
+    mapB.resize();
 }
-
-function mapLoaded() {
-    console.log(map.loaded())
-    return map.loaded()
-}
+//
+// function mapLoaded() {
+//     console.log(mapB.loaded())
+//     return mapB.loaded()
+// }
 
 function interHeights() {
-    if (!map.loaded()) {
-        console.log("NOT LOADED")
-        return;
-    }
-
-    //map.off('render', interHeights)
+    mapB.off('render', interHeights)
     console.log(" -- interHeights -- ");
     console.log("There are " + interArray.length + " intersecting points")
     var selectFeatures = [];
-    var intersectedFeatures = interArray.forEach(coords => {
-        pixelCoords = map.project(coords);
+    interArray.forEach(coords => {
+        pixelCoords = mapB.project(coords);
         var bbox = [[pixelCoords.x - 10, pixelCoords.y - 10], [pixelCoords.x + 10, pixelCoords.y + 10]];
         selectFeatures.push(mapB.queryRenderedFeatures(pixelCoords, {layers: [SELECTED_LAYER_ID]}));
 
@@ -137,11 +130,11 @@ function bboxFromJSON(json) {
     });
 }
 
-function coordsFromJSON(json) {
-    return json.features.forEach(feature => {
-        return feature;
-    })
-}
+// function coordsFromJSON(json) {
+//     return json.features.forEach(feature => {
+//         return feature;
+//     })
+// }
 
 function fit(bbox) {
     let bboxToUse = bbox || SELECTED_LAYER_BBOX;
@@ -449,7 +442,7 @@ mapB.on('load', function () {
     // });
 });
 
-//Working On Click Selector
+
 
 
 

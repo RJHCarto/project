@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/js/map.js" description="getJustJSON('EatonBray');" line="50" />
+    <bookmark url="file://$PROJECT_DIR$/js/map.js" description="getJustJSON('EatonBray');" line="65" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65513d8b-0e9f-44e9-b089-445898976761" name="Default" comment="" />
@@ -23,34 +23,31 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+            <state relative-caret-position="161">
+              <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="379" column="54" selection-start-line="379" selection-start-column="54" selection-end-line="379" selection-end-column="54" />
-              <folding>
-                <element signature="e#151#343#0" />
-                <element signature="e#375#567#0" />
-                <element signature="e#3883#4212#0" />
-                <element signature="e#4248#4577#0" />
-                <element signature="e#3875#7867#0" />
-                <element signature="e#8049#9681#0" />
-              </folding>
+            <state relative-caret-position="613">
+              <caret line="175" column="23" lean-forward="true" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/style.css">
+      <file leaf-file-name="Gist.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="270">
+              <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
+                <element signature="e#3323#3515#0" />
+                <element signature="e#6810#6953#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,6 +65,10 @@
     <findStrings>
       <find>memo</find>
       <find>xhr finish</find>
+      <find>mapLo</find>
+      <find>mapLoad</find>
+      <find>pixelc</find>
+      <find>map</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -77,13 +78,14 @@
         <option value="$PROJECT_DIR$/data/data.json" />
         <option value="$PROJECT_DIR$/S3Credentials.json" />
         <option value="$USER_HOME$/Tiles.json" />
-        <option value="$PROJECT_DIR$/js/originmap.js" />
         <option value="$PROJECT_DIR$/js/vectormap.js" />
         <option value="$PROJECT_DIR$/data/testLine.json" />
         <option value="$PROJECT_DIR$/data/testLine2.json" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/originmap.js" />
         <option value="$PROJECT_DIR$/js/map.js" />
+        <option value="$PROJECT_DIR$/Gist.html" />
       </list>
     </option>
   </component>
@@ -135,11 +137,6 @@
               <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -186,12 +183,12 @@
       <option name="presentableId" value="Default" />
       <updated>1531237631952</updated>
       <workItem from="1531237633361" duration="34757000" />
-      <workItem from="1531434176792" duration="65317000" />
+      <workItem from="1531434176792" duration="80499000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100074000" />
+    <option name="totallyTimeSpent" value="115256000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -206,7 +203,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.4973545" visible="true" weight="0.25058547" />
+      <window_info active="true" content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.4973545" visible="true" weight="0.25058547" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32976827" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3280943" />
@@ -215,7 +212,7 @@
       <window_info anchor="bottom" id="Run" order="5" />
       <window_info id="npm" order="0" side_tool="true" weight="0.3298887" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.24960254" />
-      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5026455" side_tool="true" visible="true" weight="0.25058547" />
+      <window_info x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5026455" side_tool="true" visible="true" weight="0.25058547" />
       <window_info id="Favorites" order="2" sideWeight="0.50098234" side_tool="true" weight="0.2576244" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -234,7 +231,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="22" />
+      <option name="time" value="26" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -249,14 +246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1360">
           <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
-          <folding>
-            <element signature="e#151#343#0" />
-            <element signature="e#375#567#0" />
-            <element signature="e#3883#4212#0" />
-            <element signature="e#4248#4577#0" />
-            <element signature="e#3875#7867#0" />
-            <element signature="e#8049#9681#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -303,13 +292,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/originmap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="292" lean-forward="true" selection-end-line="292" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/testLine.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -327,38 +309,57 @@
     <entry file="file://$PROJECT_DIR$/data/EatonBray.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/vectormap.js">
+    <entry file="file://$PROJECT_DIR$/js/originmap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="288" column="18" lean-forward="true" selection-start-line="288" selection-start-column="18" selection-end-line="288" selection-end-column="18" />
+        <state relative-caret-position="467">
+          <caret line="397" lean-forward="true" selection-start-line="397" selection-end-line="397" />
+          <folding>
+            <element signature="e#151#343#0" />
+            <element signature="e#375#567#0" />
+            <element signature="n#!!block;n#fit#0" />
+            <element signature="e#3872#4157#0" />
+            <element signature="e#4189#4474#0" />
+            <element signature="e#4505#7675#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
+    <entry file="file://$PROJECT_DIR$/js/vectormap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+        <state relative-caret-position="51">
+          <caret line="263" column="4" selection-start-line="263" selection-start-column="4" selection-end-line="273" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        <state relative-caret-position="161">
+          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="24" selection-end-line="55" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="379" column="54" selection-start-line="379" selection-start-column="54" selection-end-line="379" selection-end-column="54" />
+        <state relative-caret-position="613">
+          <caret line="175" column="23" lean-forward="true" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
           <folding>
-            <element signature="e#151#343#0" />
-            <element signature="e#375#567#0" />
-            <element signature="e#3883#4212#0" />
-            <element signature="e#4248#4577#0" />
-            <element signature="e#3875#7867#0" />
-            <element signature="e#8049#9681#0" />
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
+            <element signature="e#3323#3515#0" />
+            <element signature="e#6810#6953#0" />
           </folding>
         </state>
       </provider>
