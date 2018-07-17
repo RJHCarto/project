@@ -20,7 +20,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="246">
@@ -29,17 +29,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="map.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-849">
-              <caret line="314" column="26" selection-start-line="314" selection-start-column="26" selection-end-line="314" selection-end-column="26" />
+            <state relative-caret-position="258">
+              <caret line="379" column="54" selection-start-line="379" selection-start-column="54" selection-end-line="379" selection-end-column="54" />
               <folding>
                 <element signature="e#151#343#0" />
                 <element signature="e#375#567#0" />
-                <element signature="n#!!block;n#fit#0" />
-                <element signature="e#3956#3996#0" />
-                <element signature="e#4025#8017#0" />
+                <element signature="e#3883#4212#0" />
+                <element signature="e#4248#4577#0" />
+                <element signature="e#3875#7867#0" />
+                <element signature="e#8049#9681#0" />
               </folding>
             </state>
           </provider>
@@ -185,12 +186,12 @@
       <option name="presentableId" value="Default" />
       <updated>1531237631952</updated>
       <workItem from="1531237633361" duration="34757000" />
-      <workItem from="1531434176792" duration="46786000" />
+      <workItem from="1531434176792" duration="65317000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81543000" />
+    <option name="totallyTimeSpent" value="100074000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -205,7 +206,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.4973545" visible="true" weight="0.25058547" />
+      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.4973545" visible="true" weight="0.25058547" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32976827" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3280943" />
@@ -214,7 +215,7 @@
       <window_info anchor="bottom" id="Run" order="5" />
       <window_info id="npm" order="0" side_tool="true" weight="0.3298887" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.24960254" />
-      <window_info x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5026455" side_tool="true" visible="true" weight="0.25058547" />
+      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5026455" side_tool="true" visible="true" weight="0.25058547" />
       <window_info id="Favorites" order="2" sideWeight="0.50098234" side_tool="true" weight="0.2576244" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -233,7 +234,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="22" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -251,9 +252,10 @@
           <folding>
             <element signature="e#151#343#0" />
             <element signature="e#375#567#0" />
-            <element signature="n#!!block;n#fit#0" />
-            <element signature="e#3956#3996#0" />
-            <element signature="e#4025#8017#0" />
+            <element signature="e#3883#4212#0" />
+            <element signature="e#4248#4577#0" />
+            <element signature="e#3875#7867#0" />
+            <element signature="e#8049#9681#0" />
           </folding>
         </state>
       </provider>
@@ -332,20 +334,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-849">
-          <caret line="314" column="26" selection-start-line="314" selection-start-column="26" selection-end-line="314" selection-end-column="26" />
-          <folding>
-            <element signature="e#151#343#0" />
-            <element signature="e#375#567#0" />
-            <element signature="n#!!block;n#fit#0" />
-            <element signature="e#3956#3996#0" />
-            <element signature="e#4025#8017#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -357,6 +345,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
           <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="379" column="54" selection-start-line="379" selection-start-column="54" selection-end-line="379" selection-end-column="54" />
+          <folding>
+            <element signature="e#151#343#0" />
+            <element signature="e#375#567#0" />
+            <element signature="e#3883#4212#0" />
+            <element signature="e#4248#4577#0" />
+            <element signature="e#3875#7867#0" />
+            <element signature="e#8049#9681#0" />
+          </folding>
         </state>
       </provider>
     </entry>

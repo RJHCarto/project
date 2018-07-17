@@ -111,12 +111,42 @@ function switchLayer(layer) {
     }
     getJustJSON(layerId).then((coordsList)=> {getIntersect()});
     getBBOX(layerId).then(()=> {fit()});
-
 }
 
 for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
 }
+
+// Tracking testing
+//http://bl.ocks.org/boeric/f6ddea14600dc5093506
+var disable = false;
+map.on("move", function () {
+    if (!disable) {
+        var center = map.getCenter();
+        var zoom = map.getZoom();
+        var bearing = map.getBearing();
+
+        disable = true;
+        mapB.setCenter(center);
+        mapB.setZoom(zoom);
+        mapB.setBearing(bearing);
+        disable = false;
+    }
+});
+
+mapB.on("move", function () {
+    if (!disable) {
+        var center = mapB.getCenter();
+        var zoom = mapB.getZoom();
+        var bearing = mapB.getBearing();
+
+        disable = true;
+        map.setCenter(center);
+        map.setZoom(zoom);
+        map.setBearing(bearing);
+        disable = false;
+    }
+});
 
 map.on('load', function () {
     map.addSource('EatonBray', {
@@ -133,38 +163,6 @@ map.on('load', function () {
         type: 'geojson',
         data: UCL
     });
-
-
-// Tracking testing
-//http://bl.ocks.org/boeric/f6ddea14600dc5093506
-    var disable = false;
-    map.on("move", function () {
-        if (!disable) {
-            var center = map.getCenter();
-            var zoom = map.getZoom();
-            var bearing = map.getBearing();
-
-            disable = true;
-            mapB.setCenter(center);
-            mapB.setZoom(zoom);
-            mapB.setBearing(bearing);
-            disable = false;
-        }
-    })
-
-    mapB.on("move", function () {
-        if (!disable) {
-            var center = mapB.getCenter();
-            var zoom = mapB.getZoom();
-            var bearing = mapB.getBearing();
-
-            disable = true;
-            map.setCenter(center);
-            map.setZoom(zoom);
-            map.setBearing(bearing);
-            disable = false;
-        }
-    })
 
 
 // 3D rotate extrude for layers
@@ -363,26 +361,24 @@ mapB.on('load', function () {
     // });
 });
 
-
-
 //Working On Click Selector
 
-function interHeights(e) {
-    var intersectedPoints = []
+function interHeights() {
+    var intersectedPoints = [];
     interArray.forEach(coords => {
-        console.log("coords")
-        console.dir(coords)
+        console.log("coords");
+        console.dir(coords);
         selectFeatures = mapB.queryRenderedFeatures(coords);
-        intersectedPoints.push(selectFeatures)
-        console.log("SelectFeature")
+        intersectedPoints.push(selectFeatures);
+        console.log("SelectFeature");
         console.dir(selectFeatures)
     });
-    console.log("intersectedPoints")
+    console.log("intersectedPoints");
     console.dir(intersectedPoints);
-    var featureHeights = [];
-    intersectedPoints.forEach(feature => {
-        featureHeights.push(feature.properties.relh2)
-    });
+    // var featureHeights = [];
+    // intersectedPoints.forEach(feature => {
+    //     featureHeights.push(feature.properties.relh2)
+    // });
 
 
     // // Run through the selected features and set a filter
@@ -394,7 +390,8 @@ function interHeights(e) {
     // }, ['in', 'os_topo_toid']);
     //
     // mapB.setFilter('EB', filter);
-    console.log("featureHeights")
-    console.dir(featureHeights);
-};
+    // console.log("featureHeights")
+    // console.dir(featureHeights);
+}
+
 
