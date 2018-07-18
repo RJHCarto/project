@@ -37,22 +37,12 @@ var Wavendon = 'data/Wavendon.json';
 var point;
 var layerId;
 
-/*getBBOX('EatonBray');
-getLayerGeoJSON('EatonBray');*/
-
 // Draw Tools
 var draw = new MapboxDraw();
 mapB.addControl(draw, 'top-right');
 var coordsList = [];
 var interArray;
 
-
-// function bboxFromLine() {
-//     console.log(" -- bboxFromLine -- ");
-//     let bbox = turf.bbox(draw.getAll());
-//     console.log(bbox);
-//     return bbox;
-// }
 
 function getIntersect() {
     console.log(" -- getIntersect -- ")
@@ -61,33 +51,40 @@ function getIntersect() {
     var intersectingFeatures = turf.lineIntersect(drawnLine, layerFeatures);
     interArray = [];
     for (var i = 0; i < intersectingFeatures.features.length; i++) {
-        interArray.push(intersectingFeatures.features[i].geometry.coordinates)
+        interArray.push(intersectingFeatures.features[i])
     }
     console.dir(interArray);
+    console.log("--intersecting polygons--")
+    var polyArray = [];
+    for (var i = 0; i < interArray.length; i++) {
+        for (var j = 0; j < SELECTED_LAYER_JSON.features.length ; j++) {
+            var status = turf.booleanPointInPolygon(interArray[i],SELECTED_LAYER_JSON.features[j]);
+            if (status == true) {
+                console.log(SELECTED_LAYER_JSON.features[j].properties.OBJECTID)
+                break
+            }
+            }
+        }
 
-    mapB.on('render', interHeights);
-    mapB.resize();
+
+    // mapB.on('render', interHeights);
+    // mapB.resize();
 }
+
+// function interHeights() {
+//     mapB.off('render', interHeights)
+//     console.log(" -- interHeights -- ");
+//     console.log("There are " + interArray.length + " intersecting points")
+//     var selectFeatures = [];
+//     interArray.forEach(coords => {
+//         pixelCoords = mapB.project(coords);
+//         var bbox = [[pixelCoords.x - 10, pixelCoords.y - 10], [pixelCoords.x + 10, pixelCoords.y + 10]];
+//         selectFeatures.push(mapB.queryRenderedFeatures(pixelCoords, {layers: [SELECTED_LAYER_ID]}));
 //
-// function mapLoaded() {
-//     console.log(mapB.loaded())
-//     return mapB.loaded()
-// }
-
-function interHeights() {
-    mapB.off('render', interHeights)
-    console.log(" -- interHeights -- ");
-    console.log("There are " + interArray.length + " intersecting points")
-    var selectFeatures = [];
-    interArray.forEach(coords => {
-        pixelCoords = mapB.project(coords);
-        var bbox = [[pixelCoords.x - 10, pixelCoords.y - 10], [pixelCoords.x + 10, pixelCoords.y + 10]];
-        selectFeatures.push(mapB.queryRenderedFeatures(pixelCoords, {layers: [SELECTED_LAYER_ID]}));
-
-    });
-
-    console.log('SELECTED')
-    console.dir(selectFeatures)
+//     });
+//
+//     console.log('SELECTED')
+//     console.dir(selectFeatures)
 
 
     // var featureHeights = [];
@@ -107,7 +104,7 @@ function interHeights() {
     // mapB.setFilter('EB', filter);
     // console.log("featureHeights")
     // console.dir(featureHeights);
-}
+// }
 
 /**
  * Return the geoJSON object for the selected layer.
