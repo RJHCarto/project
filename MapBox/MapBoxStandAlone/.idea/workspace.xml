@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/js/map.js" description="getJustJSON('EatonBray');" line="68" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="65513d8b-0e9f-44e9-b089-445898976761" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,21 +17,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="map.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+            <state relative-caret-position="157">
+              <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
               <folding>
+                <element signature="e#2662#2902#0" />
                 <element signature="e#4231#4374#0" />
                 <element signature="e#6422#6707#0" />
                 <element signature="e#6739#7024#0" />
@@ -45,14 +34,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gist.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gist.html">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="89" selection-start-line="89" selection-end-line="89" />
-              <folding>
-                <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="255">
+              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -63,6 +58,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -74,6 +70,9 @@
       <find>mapLoad</find>
       <find>pixelc</find>
       <find>map</find>
+      <find>layer</find>
+      <find>remove</find>
+      <find>define</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -86,10 +85,11 @@
         <option value="$PROJECT_DIR$/js/vectormap.js" />
         <option value="$PROJECT_DIR$/data/testLine.json" />
         <option value="$PROJECT_DIR$/data/testLine2.json" />
-        <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/originmap.js" />
         <option value="$PROJECT_DIR$/Gist.html" />
+        <option value="$PROJECT_DIR$/js/require.js" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/map.js" />
       </list>
     </option>
@@ -115,9 +115,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="39" />
-    <option name="width" value="1890" />
-    <option name="height" value="930" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1943" />
+    <option name="height" value="1043" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -140,6 +141,24 @@
               <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
               <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="mapbox-gl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="mapbox-gl" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -190,12 +209,12 @@
       <updated>1531237631952</updated>
       <workItem from="1531237633361" duration="34757000" />
       <workItem from="1531434176792" duration="80499000" />
-      <workItem from="1531929203011" duration="6378000" />
+      <workItem from="1531929203011" duration="38945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121634000" />
+    <option name="totallyTimeSpent" value="154201000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -210,7 +229,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.49632353" visible="true" weight="0.36168522" />
+      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.49632353" visible="true" weight="0.14626391" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32976827" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3280943" />
@@ -218,7 +237,7 @@
       <window_info anchor="bottom" id="Run" order="5" />
       <window_info id="npm" order="0" side_tool="true" weight="0.3298887" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.24960254" />
-      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5036765" side_tool="true" visible="true" weight="0.36168522" />
+      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5036765" side_tool="true" visible="true" weight="0.14626391" />
       <window_info id="Favorites" order="2" sideWeight="0.50098234" side_tool="true" weight="0.2576244" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -238,7 +257,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="26" />
+      <option name="time" value="28" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -254,6 +273,7 @@
         <state relative-caret-position="2975">
           <caret line="175" column="23" lean-forward="true" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
           <folding>
+            <element signature="e#2662#2902#0" />
             <element signature="e#4231#4374#0" />
             <element signature="e#6422#6707#0" />
             <element signature="e#6739#7024#0" />
@@ -369,23 +389,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="24" selection-end-line="55" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
+        <state relative-caret-position="17">
           <caret line="89" selection-start-line="89" selection-end-line="89" />
           <folding>
             <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
@@ -393,11 +399,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/require.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17536" selection-start-line="4" selection-start-column="17536" selection-end-line="4" selection-end-column="17536" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/mapbox-gl/dist/mapbox-gl.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+        <state relative-caret-position="157">
+          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
           <folding>
+            <element signature="e#2662#2902#0" />
             <element signature="e#4231#4374#0" />
             <element signature="e#6422#6707#0" />
             <element signature="e#6739#7024#0" />

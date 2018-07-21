@@ -37,35 +37,99 @@ var Wavendon = 'data/Wavendon.json';
 var point;
 var layerId;
 
+mapB.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+        // e.point is the x, y coordinates of the mousemove event relative
+        // to the top-left corner of the map
+        JSON.stringify(e.point) + '<br />' +
+        // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.lngLat);
+});
+
+
 // Draw Tools
 var draw = new MapboxDraw();
-mapB.addControl(draw, 'top-right');
+mapB.addControl(draw, 'bottom-right');
 var coordsList = [];
-var interArray;
-
+var intersectingFeatures;
 
 function getIntersect() {
+    var interArray = [];
+    var interPoints = [];
+    var avgArray = [];
+    var avgArrayPoints = [];
+    var polyArray = [];
+    for (var i = 0; i < mapB.getStyle().layers.length; i++) {
+        if ( mapB.getStyle().layers[i].id == 'IntersectPoints') {
+            mapB.removeLayer('IntersectPoints');
+            mapB.removeSource('IntersectPoints');
+            break
+        }
+    }
     console.log(" -- getIntersect -- ")
     var drawnLine = draw.getAll();
     var layerFeatures = turf.featureCollection(SELECTED_LAYER_JSON.features);
-    var intersectingFeatures = turf.lineIntersect(drawnLine, layerFeatures);
-    interArray = [];
+    intersectingFeatures = turf.lineIntersect(drawnLine, layerFeatures);
+    console.log(" -- IntersectingFeatures -- ")
     for (var i = 0; i < intersectingFeatures.features.length; i++) {
-        interArray.push(intersectingFeatures.features[i])
+        interPoints.push(intersectingFeatures.features[i])
     }
-    console.dir(interArray);
+    for (var i = 0; i < intersectingFeatures.features.length; i++) {
+        interArray.push(intersectingFeatures.features[i].geometry.coordinates)
+    }
+    console.log("--making midpointed array--")
+    console.dir(interArray)
+
+    for (var i = 0; i < (interArray.length-1); i++) {
+        avgArray.push(interArray[i]);
+        avgCoords = [];
+        avgCoord0 = ((interArray[i][0]+interArray[i+1][0])/2);
+        avgCoord1= ((interArray[i][1]+interArray[i+1][1])/2);
+        avgCoords.push(avgCoord0, avgCoord1)
+        avgArray.push(avgCoords)
+    }
+    avgArray.push(interArray[interArray.length-1])
+    console.dir(avgArray)
+
+    console.log("--making interpolated points--")
+    avgArray.forEach(item => {
+        point = turf.point(item);
+        avgArrayPoints.push(point);
+    });
+    console.dir(avgArrayPoints);
+
+    mapB.addSource('IntersectPoints', {
+        type: 'geojson',
+        data: turf.featureCollection(avgArrayPoints)
+    });
+
+    mapB.addLayer({
+        id: 'IntersectPoints',
+        source: 'IntersectPoints',
+        type: 'circle',
+        layout: {'visibility': 'visible'},
+        paint: {
+            'circle-color': '#cc5500',
+            'circle-opacity': 0.6
+        }
+    });
+
+
     console.log("--intersecting polygons--")
-    var polyArray = [];
-    for (var i = 0; i < interArray.length; i++) {
+    for (var i = 0; i < avgArrayPoints.length; i++) {
         for (var j = 0; j < SELECTED_LAYER_JSON.features.length ; j++) {
-            var status = turf.booleanPointInPolygon(interArray[i],SELECTED_LAYER_JSON.features[j]);
+            var status = turf.booleanPointInPolygon(avgArrayPoints[i],SELECTED_LAYER_JSON.features[j]);
             if (status == true) {
-                console.log(SELECTED_LAYER_JSON.features[j].properties.OBJECTID)
+                // console.log("Building " +
+                //     SELECTED_LAYER_JSON.features[j].properties.OBJECTID
+                //     + " is " +SELECTED_LAYER_JSON.features[j].properties.relh2 + " in Height" )
+                polyArray.push(SELECTED_LAYER_JSON.features[j].properties.OBJECTID)
                 break
+
             }
             }
         }
-
+    console.dir(polyArray)
 
     // mapB.on('render', interHeights);
     // mapB.resize();
@@ -437,6 +501,13 @@ mapB.on('load', function () {
     //     },
     //     filter: ['in', 'os_topo_toid', '']
     // });
+
+    mapB.on('click', SELECTED_LAYER_ID, function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML("Building ID: " + e.features[0].properties.OBJECTID + "</br> Building Height: " + e.features[0].properties.relh2)
+            .addTo(mapB);
+    });
 });
 
 
