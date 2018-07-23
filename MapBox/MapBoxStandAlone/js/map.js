@@ -38,6 +38,9 @@ var point;
 var layerId;
 var coordsList = [];
 var uniqueBuildings;
+var selectedBuildings;
+var buildingHeights;
+var interArray;
 
 // mapB.on('mousemove', function (e) {
 //     document.getElementById('info').innerHTML =
@@ -61,15 +64,16 @@ mapB.addControl(draw, 'top-right');
 
 
 function getIntersect() {
-    var interArray = [];
-    var interPoints = [];
+    interArray = [];
+    var interDist = [];
     var avgArray = [];
     var avgArrayPoints = [];
     var buildingPoints = [];
     var buildingFeatures = [];
     var selectedPoints;
-    var selectedBuildings;
+    selectedBuildings;
     uniqueBuildings;
+    buildingHeights = ['data'];
 
     for (var i = 0; i < mapB.getStyle().layers.length; i++) {
         if ( mapB.getStyle().layers[i].id == 'HighlightedBuildings' ) {
@@ -90,7 +94,15 @@ function getIntersect() {
     for (var i = 0; i < intersectingFeatures.features.length; i++) {
         interArray.push(intersectingFeatures.features[i].geometry.coordinates)
     }
-    interArray.sort();
+    interArray = interArray.sort();
+
+    console.log("--Making point distance array--");
+    for (var i = 0; i < interArray.length-1; i++) {
+        pt1 = turf.point(interArray[i]);
+        pt2 = turf.point(interArray[i+1]);
+        interDist.push(turf.distance(pt1, pt2, {unit: 'kilometers'}));
+    }
+    console.dir(interDist);
 
     console.log("--Making midpoint array--")
     for (var i = 0; i < (interArray.length-1); i++) {
@@ -121,24 +133,26 @@ function getIntersect() {
             }
             }
         }
+    for (var i = 0; i < selectedBuildings.features.length; i++) {
+        buildingHeights.push(selectedBuildings.features[i].properties.relh2);
+    }
 
-    // console.log("--Making Building Points--")
-    //
-    // mapB.addSource('IntersectPoints', {
-    //     type: 'geojson',
-    //     data: turf.featureCollection(selectedPoints)
-    // });
-    //
-    // mapB.addLayer({
-    //     id: 'IntersectPoints',
-    //     source: 'IntersectPoints',
-    //     type: 'circle',
-    //     layout: {'visibility': 'visible'},
-    //     paint: {
-    //         'circle-color': '#cc5500',
-    //         'circle-opacity': 0.6
-    //     }
-    // });
+    var chart = c3.generate({
+        data: {
+            columns: [
+                buildingHeights
+            ],
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.5 // this makes bar width 50% of length between ticks
+            }
+            // or
+            //width: 100 // this makes bar width 100px
+        }
+    });
+
 
     console.log("--Highlighting Buildings--")
 
