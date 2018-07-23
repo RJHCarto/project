@@ -1,9 +1,8 @@
 var chart = c3.generate({
     data: {
         columns: [
-            buildingHeights
         ],
-        type: 'line'
+        type: 'bar'
     },
     bar: {
         width: {

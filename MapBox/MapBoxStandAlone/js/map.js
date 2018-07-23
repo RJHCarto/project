@@ -81,6 +81,8 @@ function getIntersect() {
             // mapB.removeSource('IntersectPoints');
             mapB.removeLayer('HighlightedBuildings');
             mapB.removeSource('HighlightedBuildings');
+            map.removeLayer('HighlightedBuildings');
+            map.removeSource('HighlightedBuildings');
             break
         }
     }
@@ -137,20 +139,10 @@ function getIntersect() {
         buildingHeights.push(selectedBuildings.features[i].properties.relh2);
     }
 
-    var chart = c3.generate({
-        data: {
-            columns: [
-                buildingHeights
-            ],
-            type: 'bar'
-        },
-        bar: {
-            width: {
-                ratio: 0.5 // this makes bar width 50% of length between ticks
-            }
-            // or
-            //width: 100 // this makes bar width 100px
-        }
+    chart.load({
+        columns: [
+            buildingHeights
+        ]
     });
 
 
@@ -169,6 +161,26 @@ function getIntersect() {
             'fill-color': '#000000',
             'fill-opacity': 0.6
         },
+    });
+
+    map.addSource('HighlightedBuildings', {
+        type: 'geojson',
+        data: selectedBuildings
+    });
+
+    map.addLayer({
+        id: 'HighlightedBuildings',
+        source: 'HighlightedBuildings',
+        type: 'fill-extrusion',
+        paint: {
+            'fill-extrusion-color': '#000000',
+            'fill-extrusion-height': {
+                'type': 'identity',
+                'property': 'relh2'
+            },
+            'fill-extrusion-base': 0,
+            'fill-extrusion-opacity': 0.6
+        }
     });
 
     console.log("--Compiling Building IDs--")
