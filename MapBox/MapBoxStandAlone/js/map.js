@@ -36,139 +36,133 @@ var UCL = 'data/UCL.json';
 var Wavendon = 'data/Wavendon.json';
 var point;
 var layerId;
+var coordsList = [];
+var uniqueBuildings;
 
-mapB.on('mousemove', function (e) {
-    document.getElementById('info').innerHTML =
-        // e.point is the x, y coordinates of the mousemove event relative
-        // to the top-left corner of the map
-        JSON.stringify(e.point) + '<br />' +
-        // e.lngLat is the longitude, latitude geographical position of the event
-        JSON.stringify(e.lngLat);
-});
+// mapB.on('mousemove', function (e) {
+//     document.getElementById('info').innerHTML =
+//         // e.point is the x, y coordinates of the mousemove event relative
+//         // to the top-left corner of the map
+//         JSON.stringify(e.point) + '<br />' +
+//         // e.lngLat is the longitude, latitude geographical position of the event
+//         JSON.stringify(e.lngLat);
+// });
 
 
 // Draw Tools
-var draw = new MapboxDraw();
-mapB.addControl(draw, 'bottom-right');
-var coordsList = [];
-var intersectingFeatures;
+var draw = new MapboxDraw({
+    displayControlsDefault: false,
+    controls: {
+        line_string: true,
+        trash: true
+    }
+});
+mapB.addControl(draw, 'top-right');
+
 
 function getIntersect() {
     var interArray = [];
     var interPoints = [];
     var avgArray = [];
     var avgArrayPoints = [];
-    var polyArray = [];
+    var buildingPoints = [];
+    var buildingFeatures = [];
+    var selectedPoints;
+    var selectedBuildings;
+    uniqueBuildings;
+
     for (var i = 0; i < mapB.getStyle().layers.length; i++) {
-        if ( mapB.getStyle().layers[i].id == 'IntersectPoints') {
-            mapB.removeLayer('IntersectPoints');
-            mapB.removeSource('IntersectPoints');
+        if ( mapB.getStyle().layers[i].id == 'HighlightedBuildings' ) {
+            // mapB.removeLayer('IntersectPoints');
+            // mapB.removeSource('IntersectPoints');
+            mapB.removeLayer('HighlightedBuildings');
+            mapB.removeSource('HighlightedBuildings');
             break
         }
     }
-    console.log(" -- getIntersect -- ")
+
+    console.log(" --Performing Intersect-- ")
     var drawnLine = draw.getAll();
     var layerFeatures = turf.featureCollection(SELECTED_LAYER_JSON.features);
     intersectingFeatures = turf.lineIntersect(drawnLine, layerFeatures);
-    console.log(" -- IntersectingFeatures -- ")
-    for (var i = 0; i < intersectingFeatures.features.length; i++) {
-        interPoints.push(intersectingFeatures.features[i])
-    }
+
+    console.log(" --Making Intersect Array-- ")
     for (var i = 0; i < intersectingFeatures.features.length; i++) {
         interArray.push(intersectingFeatures.features[i].geometry.coordinates)
     }
-    console.log("--making midpointed array--")
-    console.dir(interArray)
+    interArray.sort();
 
+    console.log("--Making midpoint array--")
     for (var i = 0; i < (interArray.length-1); i++) {
-        avgArray.push(interArray[i]);
         avgCoords = [];
         avgCoord0 = ((interArray[i][0]+interArray[i+1][0])/2);
         avgCoord1= ((interArray[i][1]+interArray[i+1][1])/2);
         avgCoords.push(avgCoord0, avgCoord1)
         avgArray.push(avgCoords)
     }
-    avgArray.push(interArray[interArray.length-1])
-    console.dir(avgArray)
 
-    console.log("--making interpolated points--")
+    console.log("--Making midpoint points--")
     avgArray.forEach(item => {
         point = turf.point(item);
         avgArrayPoints.push(point);
     });
-    console.dir(avgArrayPoints);
 
-    mapB.addSource('IntersectPoints', {
-        type: 'geojson',
-        data: turf.featureCollection(avgArrayPoints)
-    });
-
-    mapB.addLayer({
-        id: 'IntersectPoints',
-        source: 'IntersectPoints',
-        type: 'circle',
-        layout: {'visibility': 'visible'},
-        paint: {
-            'circle-color': '#cc5500',
-            'circle-opacity': 0.6
-        }
-    });
-
-
-    console.log("--intersecting polygons--")
     for (var i = 0; i < avgArrayPoints.length; i++) {
         for (var j = 0; j < SELECTED_LAYER_JSON.features.length ; j++) {
             var status = turf.booleanPointInPolygon(avgArrayPoints[i],SELECTED_LAYER_JSON.features[j]);
             if (status == true) {
-                // console.log("Building " +
-                //     SELECTED_LAYER_JSON.features[j].properties.OBJECTID
-                //     + " is " +SELECTED_LAYER_JSON.features[j].properties.relh2 + " in Height" )
-                polyArray.push(SELECTED_LAYER_JSON.features[j].properties.OBJECTID)
+                buildingPoints.push(avgArrayPoints[i]);
+                selectedPoints = turf.featureCollection(buildingPoints)
+                buildingFeatures.push(SELECTED_LAYER_JSON.features[j]);
+                uniqueBuildings = _.uniq(buildingFeatures)
+                selectedBuildings = turf.featureCollection(uniqueBuildings)
                 break
 
             }
             }
         }
-    console.dir(polyArray)
 
-    // mapB.on('render', interHeights);
-    // mapB.resize();
-}
-
-// function interHeights() {
-//     mapB.off('render', interHeights)
-//     console.log(" -- interHeights -- ");
-//     console.log("There are " + interArray.length + " intersecting points")
-//     var selectFeatures = [];
-//     interArray.forEach(coords => {
-//         pixelCoords = mapB.project(coords);
-//         var bbox = [[pixelCoords.x - 10, pixelCoords.y - 10], [pixelCoords.x + 10, pixelCoords.y + 10]];
-//         selectFeatures.push(mapB.queryRenderedFeatures(pixelCoords, {layers: [SELECTED_LAYER_ID]}));
-//
-//     });
-//
-//     console.log('SELECTED')
-//     console.dir(selectFeatures)
-
-
-    // var featureHeights = [];
-    // intersectedPoints.forEach(feature => {
-    //     featureHeights.push(feature.properties.relh2)
+    // console.log("--Making Building Points--")
+    //
+    // mapB.addSource('IntersectPoints', {
+    //     type: 'geojson',
+    //     data: turf.featureCollection(selectedPoints)
+    // });
+    //
+    // mapB.addLayer({
+    //     id: 'IntersectPoints',
+    //     source: 'IntersectPoints',
+    //     type: 'circle',
+    //     layout: {'visibility': 'visible'},
+    //     paint: {
+    //         'circle-color': '#cc5500',
+    //         'circle-opacity': 0.6
+    //     }
     // });
 
+    console.log("--Highlighting Buildings--")
 
-    // // Run through the selected features and set a filter
-    // // to match features with unique FIPS codes to activate
-    // // the `counties-highlighted` layer.
-    // var filter = selectFeatures.reduce(function(memo, feature) {
-    //     memo.push(feature.properties.os_topo_toid);
-    //     return memo;
-    // }, ['in', 'os_topo_toid']);
-    //
-    // mapB.setFilter('EB', filter);
-    // console.log("featureHeights")
-    // console.dir(featureHeights);
-// }
+    mapB.addSource('HighlightedBuildings', {
+        type: 'geojson',
+        data: selectedBuildings
+    });
+
+    mapB.addLayer({
+        id: 'HighlightedBuildings',
+        source: 'HighlightedBuildings',
+        type: 'fill',
+        paint: {
+            'fill-color': '#000000',
+            'fill-opacity': 0.6
+        },
+    });
+
+    console.log("--Compiling Building IDs--")
+    console.dir(uniqueBuildings);
+
+}
+
+
 
 /**
  * Return the geoJSON object for the selected layer.
@@ -190,12 +184,6 @@ function bboxFromJSON(json) {
         resolve(turf.bbox(json));
     });
 }
-
-// function coordsFromJSON(json) {
-//     return json.features.forEach(feature => {
-//         return feature;
-//     })
-// }
 
 function fit(bbox) {
     let bboxToUse = bbox || SELECTED_LAYER_BBOX;
@@ -418,16 +406,6 @@ mapB.on('load', function () {
         data: UCL
     });
 
-    // mapB.addSource('testLine', {
-    //     type: 'geojson',
-    //     data: testLine1
-    // });
-
-    // mapB.addSource('testIntersects', {
-    //     type: 'geojson',
-    //     data: intersects
-    // });
-
     mapB.addLayer({
         id: 'EatonBray',
         source: 'EatonBray',
@@ -468,39 +446,6 @@ mapB.on('load', function () {
      */
     switchLayer('EatonBray');
 
-    // mapB.addLayer({
-    //     id: 'testLine',
-    //     source: 'testLine',
-    //     type: 'line',
-    //     layout: {'visibility': 'visible'},
-    //     paint: {
-    //         'line-color': '#000000'
-    //     }
-    // });
-
-    // mapB.addLayer({
-    //     id: 'testIntersects',
-    //     source: 'testIntersects',
-    //     type: 'circle',
-    //     layout: {'visibility': 'visible'},
-    //     paint: {
-    //         "circle-radius": 10,
-    //         "circle-color": "#3887be"
-    //     }
-    // });
-
-    //Highlighting Layer
-    //
-    // mapB.addLayer({
-    //     id: 'EB',
-    //     source: 'EatonBray',
-    //     type: 'fill',
-    //     paint: {
-    //         'fill-color': '#000000',
-    //         'fill-opacity': 0.6
-    //     },
-    //     filter: ['in', 'os_topo_toid', '']
-    // });
 
     mapB.on('click', SELECTED_LAYER_ID, function (e) {
         new mapboxgl.Popup()

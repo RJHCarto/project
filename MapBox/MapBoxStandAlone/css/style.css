@@ -2,19 +2,19 @@
     #map { position:absolute; top:0; bottom:0; right:0; width:50%; }
     #mapB { position:absolute; top:0; bottom:0; left:0; width:50%; }
 
-    #info {
-        display: block;
-        position: relative;
-        margin: 0px auto;
-        width: 50%;
-        padding: 10px;
-        border: none;
-        border-radius: 3px;
-        font-size: 12px;
-        text-align: center;
-        color: #222;
-        background: #fff;
-    }
+    /*#info {*/
+        /*display: block;*/
+        /*position: relative;*/
+        /*margin: 0px auto;*/
+        /*width: 50%;*/
+        /*padding: 10px;*/
+        /*border: none;*/
+        /*border-radius: 3px;*/
+        /*font-size: 12px;*/
+        /*text-align: center;*/
+        /*color: #222;*/
+        /*background: #fff;*/
+    /*}*/
 
 
     #menu {
@@ -56,7 +56,7 @@
         cursor: pointer;
     }
 
-    #iHeight {
+    #getHeight {
         background-color: #ee8a65;
         font-family: Helvetica, Arial, Sans-Serif;
         color: #fff;
