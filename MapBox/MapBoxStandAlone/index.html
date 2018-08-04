@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset='utf-8' />
     <title>Display buildings in 3D</title>
+    <link rel="stylesheet" href="css/mdl/material.min.css">
+    <script src="css/mdl/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
@@ -16,24 +19,31 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.5/c3.css" />
 </head>
-<body>
-<div id='menu'>
-    <legend>Layers:</legend>
-    <input id='EatonBray' type='radio' name='rtoggle' checked='EatonBray' >
-    <label for='EatonBray'>Eaton Bray</label>
-    <input id='Wavendon' type='radio' name='rtoggle' value='Wavendon' >
-    <label for='Wavendon'>Wavendon</label>
-    <input id='UCL' type='radio' name='rtoggle' value='UCL' value='UCL'>
-    <label for='UCL'>UCL</label>
-</div>
-<div id='map'></div>
-<div id='mapB'></div>
-<!--<pre id='info'></pre>-->
-<div id='chart' style=""></div>
-<div id='fitBounds' onclick='fit()'>Fit</div>
-<div id='getLine' onclick='getIntersect()'>Intersect</div>
-<!--<div id='getHeight' onclick='Heights()'>Heights</div>-->
-<script src="js/map.js"></script>
-<script src="js/chart.js"></script>
-</body>
+        <body>
+        <div id='menu'>
+            <legend>Layers:</legend>
+            <input id='EatonBray' type='radio' name='rtoggle' checked='EatonBray' >
+            <label for='EatonBray'>Eaton Bray</label>
+            <input id='Wavendon' type='radio' name='rtoggle' value='Wavendon' >
+            <label for='Wavendon'>Wavendon</label>
+            <input id='UCL' type='radio' name='rtoggle' value='UCL' value='UCL'>
+            <label for='UCL'>UCL</label>
+        </div>
+        <div id='map'></div>
+        <div id='mapB'></div>
+        <div id='map-overlay' class='map-overlay'></div>
+        <div id='chart'></div>
+        <!--<pre id='info'></pre>-->
+        <div id='fitBounds' onclick='fit()'>Fit</div>
+        <div id='getLine' onclick='getIntersect()'>Intersect</div>
+        <!--<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2" style="top: 9em; left: 1em">-->
+            <!--<input type="checkbox" id="switch-2" class="mdl-switch__input" onclick='similar()' >-->
+            <!--<span class="mdl-switch__label"></span>-->
+        <!--</label>-->
+        <div id='on' onclick='similar()'>on</div>
+        <div id='off' onclick='similarOff()'>off</div>
+        <script src="js/map.js"></script>
+        <script src="js/chart.js"></script>
+        <script src="js/similar.js"></script>
+        </body>
 </html>

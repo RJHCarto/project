@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/js/map.js" description="    console.log(&quot;--Making point distance array--&quot;)..." line="100" />
+    <bookmark url="file://$PROJECT_DIR$/js/map.js" description="    console.log(&quot;--Making point distance array--&quot;)..." line="99" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65513d8b-0e9f-44e9-b089-445898976761" name="Default" comment="" />
@@ -23,17 +23,20 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="36" selection-start-line="36" selection-end-line="37" />
+            <state relative-caret-position="376">
+              <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+              <folding>
+                <marker date="1532887212729" expanded="true" signature="2483:2524" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1074">
-              <caret line="85" column="17" lean-forward="true" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+            <state relative-caret-position="94">
+              <caret line="173" column="21" selection-start-line="173" selection-start-column="21" selection-end-line="173" selection-end-column="21" />
               <folding>
                 <element signature="e#151#343#0" />
                 <element signature="e#375#567#0" />
@@ -44,8 +47,18 @@
                 <element signature="e#8181#8257#0" />
                 <element signature="e#8376#8661#0" />
                 <element signature="e#8693#8978#0" />
-                <element signature="e#12208#14589#0" />
+                <element signature="e#9009#12176#0" />
+                <element signature="e#9271#9302#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="similar.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/similar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="85" column="23" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -54,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/js/chart.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+              <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -62,8 +75,17 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            <state relative-caret-position="68">
+              <caret line="4" column="37" lean-forward="true" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="material.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/mdl/material.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6276">
+              <caret line="10856" column="9" selection-start-line="10856" selection-start-column="1" selection-end-line="10856" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -91,6 +113,9 @@
       <find>remove</find>
       <find>define</find>
       <find>interPoints</find>
+      <find>grid</find>
+      <find>.mdl-</find>
+      <find>mdl-grid</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -107,10 +132,13 @@
         <option value="$PROJECT_DIR$/Gist.html" />
         <option value="$PROJECT_DIR$/js/require.js" />
         <option value="$PROJECT_DIR$/css/draw.css" />
-        <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/chart.js" />
+        <option value="$USER_HOME$/Downloads/mdl-template-dashboard (1)/index.html" />
+        <option value="$USER_HOME$/Downloads/mdl-template-dashboard (1)/styles.css" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/map.js" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/similar.js" />
       </list>
     </option>
   </component>
@@ -128,6 +156,7 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
+      <path value="$PROJECT_DIR$/css/mdl/package.json" />
       <path value="$PROJECT_DIR$/js/mapbox-gl-sync-move/package.json" />
       <path value="$PROJECT_DIR$/js/mapbox-gl/package.json" />
       <path value="$PROJECT_DIR$/js/mapbox-gl/src/style-spec/package.json" />
@@ -156,11 +185,6 @@
               <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
               <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MapBoxStandAlone" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MapBoxStandAlone" type="b2602c69:ProjectViewProjectNode" />
@@ -218,12 +242,12 @@
       <workItem from="1531237633361" duration="34757000" />
       <workItem from="1531434176792" duration="80499000" />
       <workItem from="1531929203011" duration="39151000" />
-      <workItem from="1532190595091" duration="33557000" />
+      <workItem from="1532190595091" duration="68598000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187964000" />
+    <option name="totallyTimeSpent" value="223005000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -238,15 +262,15 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.4908088" visible="true" weight="0.37201908" />
+      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.48713234" weight="0.21621622" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32976827" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3280943" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3272059" />
       <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="5" />
-      <window_info id="npm" order="0" side_tool="true" weight="0.3298887" />
+      <window_info id="npm" order="0" sideWeight="0.5128676" side_tool="true" weight="0.21621622" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.24960254" />
-      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.50919116" side_tool="true" visible="true" weight="0.37201908" />
+      <window_info x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5128676" side_tool="true" weight="0.21621622" />
       <window_info id="Favorites" order="2" sideWeight="0.50098234" side_tool="true" weight="0.2576244" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -260,19 +284,19 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info id="npm" order="0" side_tool="true" weight="0.3298887" />
+      <window_info id="npm" order="0" sideWeight="0.5128676" side_tool="true" weight="0.21621622" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
-      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.49264705" visible="true" weight="0.37201908" />
+      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.48713234" visible="true" weight="0.21621622" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.24960254" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32976827" />
       <window_info anchor="bottom" id="Run" order="5" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
-      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.50735295" side_tool="true" visible="true" weight="0.37201908" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3280943" />
+      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5128676" side_tool="true" visible="true" weight="0.21621622" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3272059" />
       <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info id="Favorites" order="2" sideWeight="0.50098234" side_tool="true" weight="0.2576244" />
@@ -286,7 +310,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="35" />
+      <option name="time" value="40" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -311,7 +335,8 @@
             <element signature="e#8181#8257#0" />
             <element signature="e#8376#8661#0" />
             <element signature="e#8693#8978#0" />
-            <element signature="e#12208#14589#0" />
+            <element signature="e#9009#12176#0" />
+            <element signature="e#9271#9302#0" />
           </folding>
         </state>
       </provider>
@@ -480,31 +505,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        <state relative-caret-position="31">
+          <caret line="236" column="10" lean-forward="true" selection-start-line="236" selection-start-column="10" selection-end-line="236" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$USER_HOME$/Downloads/mdl-template-dashboard (1)/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="36" selection-start-line="36" selection-end-line="37" />
+        <state relative-caret-position="187">
+          <caret line="54" column="15" lean-forward="true" selection-end-line="97" />
+          <folding>
+            <element signature="e#3781#3807#0" expanded="true" />
+            <element signature="e#3993#4019#0" expanded="true" />
+            <element signature="e#6823#6857#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/mdl-template-dashboard (1)/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/mdl/material.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6276">
+          <caret line="10856" column="9" selection-start-line="10856" selection-start-column="1" selection-end-line="10856" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="37" lean-forward="true" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/chart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+          <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1074">
-          <caret line="85" column="17" lean-forward="true" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+        <state relative-caret-position="94">
+          <caret line="173" column="21" selection-start-line="173" selection-start-column="21" selection-end-line="173" selection-end-column="21" />
           <folding>
             <element signature="e#151#343#0" />
             <element signature="e#375#567#0" />
@@ -515,8 +566,26 @@
             <element signature="e#8181#8257#0" />
             <element signature="e#8376#8661#0" />
             <element signature="e#8693#8978#0" />
-            <element signature="e#12208#14589#0" />
+            <element signature="e#9009#12176#0" />
+            <element signature="e#9271#9302#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+          <folding>
+            <marker date="1532887212729" expanded="true" signature="2483:2524" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/similar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="85" column="23" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
         </state>
       </provider>
     </entry>

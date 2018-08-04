@@ -30,17 +30,16 @@ let SELECTED_LAYER_ID = null;
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
 var baseURL = 'http://localhost:8000/';
-var data = 'data'
+var data = 'data';
 var EatonBray = 'data/EatonBray.json';
 var UCL = 'data/UCL.json';
 var Wavendon = 'data/Wavendon.json';
 var point;
 var layerId;
 var coordsList = [];
-var uniqueBuildings;
 var selectedBuildings;
-var buildingHeights;
-var interArray;
+
+
 
 // mapB.on('mousemove', function (e) {
 //     document.getElementById('info').innerHTML =
@@ -64,16 +63,16 @@ mapB.addControl(draw, 'top-right');
 
 
 function getIntersect() {
-    interArray = [];
+    var interArray = [];
     var interDist = [];
     var avgArray = [];
     var avgArrayPoints = [];
     var buildingPoints = [];
     var buildingFeatures = [];
     var selectedPoints;
-    selectedBuildings;
-    uniqueBuildings;
-    buildingHeights = ['data'];
+    var uniqueBuildings;
+    var buildingHeights = ['data'];
+    var selectedBuildings;
 
     for (var i = 0; i < mapB.getStyle().layers.length; i++) {
         if ( mapB.getStyle().layers[i].id == 'HighlightedBuildings' ) {
@@ -139,6 +138,7 @@ function getIntersect() {
         buildingHeights.push(selectedBuildings.features[i].properties.relh2);
     }
 
+
     chart.load({
         columns: [
             buildingHeights
@@ -183,8 +183,6 @@ function getIntersect() {
         }
     });
 
-    console.log("--Compiling Building IDs--")
-    console.dir(uniqueBuildings);
 
 }
 
@@ -473,12 +471,15 @@ mapB.on('load', function () {
     switchLayer('EatonBray');
 
 
-    mapB.on('click', SELECTED_LAYER_ID, function (e) {
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML("Building ID: " + e.features[0].properties.OBJECTID + "</br> Building Height: " + e.features[0].properties.relh2)
-            .addTo(mapB);
-    });
+
+
+    // mapB.on('click', SELECTED_LAYER_ID, function (e) {
+    //     new mapboxgl.Popup()
+    //         .setLngLat(e.lngLat)
+    //         .setHTML("Building ID: " + e.features[0].properties.OBJECTID + "</br> Building Height: " + e.features[0].properties.relh2)
+    //         .addTo(mapB);
+    // });
+
 });
 
 
