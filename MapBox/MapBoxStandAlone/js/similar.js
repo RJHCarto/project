@@ -1,5 +1,7 @@
 var overlay = document.getElementById('map-overlay');
 
+var relatedFeatures;
+
 function showing(e) {
     // Change the cursor style as a UI indicator.
     mapB.getCanvas().style.cursor = 'pointer';
@@ -9,7 +11,7 @@ function showing(e) {
 
     // Query the counties layer visible in the map. Use the filter
     // param to only collect results that share the same county name.
-    var relatedFeatures = mapB.querySourceFeatures(SELECTED_LAYER_ID, {
+    relatedFeatures = mapB.querySourceFeatures(SELECTED_LAYER_ID, {
         filter: ['in', 'relh2', feature.properties.relh2]
     });
 
@@ -18,7 +20,7 @@ function showing(e) {
 
 
     var title = document.createElement('strong');
-    title.textContent = 'Building Height: ' + feature.properties.relh2;
+    title.textContent = 'Building Height: ' + ((feature.properties.relh2).toFixed(1)) + 'm';
 
     var height = document.createElement('div');
     height.textContent = relatedFeatures.length + ' found';

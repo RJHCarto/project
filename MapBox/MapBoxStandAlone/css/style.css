@@ -2,7 +2,7 @@
     #map { position:absolute; top:0; bottom:0; right:0; width:50%; height:100%}
     #mapB { position:absolute; top:0; bottom:0; left:0; width:50%; height:50% }
     #chart {
-        position:absolute !important;
+        position:absolute;
         bottom:0;
         left:0;
         height: 48%;
@@ -77,24 +77,27 @@
         cursor: pointer;
     }
 
-    #on {
+
+    #similar {
         background-color: #ee8a65;
         font-family: Helvetica, Arial, Sans-Serif;
         color: #fff;
         position: absolute;
-        top: 10em;
+        top: 9em;
         left: 1em;
         padding: 0.7em;
+        width:115px;
+        height: 40px;
         border-radius: 0.2em;
         cursor: pointer;
     }
 
-    #off {
+    #remove {
         background-color: #ee8a65;
         font-family: Helvetica, Arial, Sans-Serif;
         color: #fff;
         position: absolute;
-        top: 13em;
+        top: 14em;
         left: 1em;
         padding: 0.7em;
         border-radius: 0.2em;
