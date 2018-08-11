@@ -7,7 +7,6 @@
 function getLayerGeoJSON(layer) {
     console.log(" -- getLayerGeoJSON --")
     return new Promise((resolve, reject) => {
-        coordsList = [];
         $.getJSON(baseURL.concat(window[layer]), function (data) {
             resolve(data)
         });

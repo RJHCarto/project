@@ -26,10 +26,9 @@ var SELECTED_LAYER_BBOX;
 var SELECTED_LAYER_JSON;
 var SELECTED_LAYER_ID;
 
-
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
-var baseURL = 'http://localhost:8000/';
+var baseURL = 'http://localhost:' + 8000 + '/';
 var data = 'data';
 var EatonBray = 'data/EatonBray.json';
 var UCL = 'data/UCL.json';
