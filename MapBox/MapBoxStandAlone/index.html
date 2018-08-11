@@ -3,10 +3,10 @@
 <head>
     <meta charset='utf-8' />
     <title>Display buildings in 3D</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link rel="stylesheet" href="css/mdl/material.min.css">
     <script src="css/mdl/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />
@@ -14,12 +14,9 @@
     <link rel='stylesheet' href='css/draw.css' type='text/css' />
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.5/c3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.0.4/math.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.5/c3.css" />
 </head>
         <body>
         <div id='menu'>
@@ -58,9 +55,10 @@
             </div>
         </div>
         <div id='map-overlay' class='map-overlay'></div>
+        <div id="chartHolder">
+            <div id="holderText">Building height profile chart will load here.</div>
+        </div>
         <div id="chart"></div>
-        <!--<div id='chart'></div>-->
-        <!--<pre id='info'></pre>-->
         <div id='fitBounds' onclick='fit()'>Fit</div>
         <div id='getLine' onclick='getIntersect()'>Intersect</div>
         <div id='similar'>
@@ -73,7 +71,6 @@
         <script src="js/map.js"></script>
         <script src="js/fitMenu.js"></script>
         <script src="js/intersect.js"></script>
-        <!--<script src="js/chart.js"></script>-->
         <script src="js/similar.js"></script>
         </body>
 </html>
