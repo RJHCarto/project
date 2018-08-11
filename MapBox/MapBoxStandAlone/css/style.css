@@ -1,81 +1,128 @@
-    body { margin:0; padding:0; }
-    #map { position:absolute; top:0; bottom:0; right:0; width:50%; }
-    #mapB { position:absolute; top:0; bottom:0; left:0; width:50%; height:50% }
-    #chart {
-        position:absolute !important;
-        bottom:0;
-        left:0;
-        width:40%;
-        height:40%;
-        margin-left: 5px;
-        margin-bottom: 5px;
-    }
+body { margin:0; padding:0; }
+:root {
+    --GXBlue: #263746;
+    --GXTeal: #94CCC6;
+    --GXGrey: #D8D1CA;
+}
+
+#map { position:absolute; top:0; bottom:0; right:0; width:50%; height:100%}
+#mapB { position:absolute; top:0; bottom:0; left:0; width:50%; height:50% }
+#chart {
+    position:absolute;
+    font-family: Helvetica, Arial, Sans-Serif;
+    bottom:0;
+    left:0;
+    height: 50%;
+    width: 50%;
+}
+
+#chartHolder {
+    background-color: var(--GXGrey);
+    position:absolute;
+    border: 1px dashed var(--GXBlue);
+    bottom:0;
+    left:0;
+    margin: 10px;
+    height: 46%;
+    width: 48%;
+}
+
+#holderText {
+    colour: var(--GXBlue);
+    text-align: center;
+    font-family: Helvetica, Arial, Sans-Serif;
+    height: 250px;
+    line-height: 250px;
+}
+
+.map-overlay {
+    font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-size: 16px/12px;
+    color: var(--GXblue);
+    background-color: var(--GXGrey);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    border-radius: 3px;
+    position: absolute;
+    width: 15%;
+    top: 10px;
+    left: 200px;
+    padding: 10px;
+    display: none;
+}
 
 
-    /*#info {*/
-        /*display: block;*/
-        /*position: relative;*/
-        /*margin: 0px auto;*/
-        /*width: 50%;*/
-        /*padding: 10px;*/
-        /*border: none;*/
-        /*border-radius: 3px;*/
-        /*font-size: 12px;*/
-        /*text-align: center;*/
-        /*color: #222;*/
-        /*background: #fff;*/
-    /*}*/
+/*#info {*/
+/*display: block;*/
+/*position: relative;*/
+/*margin: 0px auto;*/
+/*width: 50%;*/
+/*padding: 10px;*/
+/*border: none;*/
+/*border-radius: 3px;*/
+/*font-size: 12px;*/
+/*text-align: center;*/
+/*color: #222;*/
+/*background: #fff;*/
+/*}*/
 
 
-    #menu {
-        background-color: #ee8a65;
-        position: absolute;
-        z-index: 1;
-        top: 1em;
-        right: 1em;
-        border-radius: 0.2em;
-        padding: 0.7em;
-        width: 125px;
-        font-family: Helvetica, Arial, Sans-Serif;
-        color: #fff;
-        cursor: pointer;
-    }
+#menu {
+    background-color: var(--GXBlue);
+    position: absolute;
+    z-index: 1;
+    top: 1em;
+    right: 1em;
+    border-radius: 0.2em;
+    padding: 0.7em;
+    width: 100px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    color: var(--GXGrey);
+    cursor: pointer;
+}
 
 
-    #fitBounds {
-        background-color: #ee8a65;
-        font-family: Helvetica, Arial, Sans-Serif;
-        color: #fff;
-        position: absolute;
-        top: 1em;
-        left: 1em;
-        padding: 0.7em;
-        border-radius: 0.2em;
-        cursor: pointer;
-    }
+#fitBounds {
+    background-color: var(--GXBlue);
+    font-family: Helvetica, Arial, Sans-Serif;
+    color: var(--GXGrey);
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    padding: 0.7em;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
 
-    #getLine {
-        background-color: #ee8a65;
-        font-family: Helvetica, Arial, Sans-Serif;
-        color: #fff;
-        position: absolute;
-        top: 5em;
-        left: 1em;
-        padding: 0.7em;
-        border-radius: 0.2em;
-        cursor: pointer;
-    }
+#getLine {
+    background-color: var(--GXBlue);
+    font-family: Helvetica, Arial, Sans-Serif;
+    color: var(--GXGrey);
+    position: absolute;
+    top: 5em;
+    left: 1em;
+    padding: 0.7em;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
 
-    #getHeight {
-        background-color: #ee8a65;
-        font-family: Helvetica, Arial, Sans-Serif;
-        color: #fff;
-        position: absolute;
-        top: 10em;
-        left: 1em;
-        padding: 0.7em;
-        border-radius: 0.2em;
-        cursor: pointer;
-    }
+
+#similar {
+    background-color: var(--GXBlue);
+    font-family: Helvetica, Arial, Sans-Serif;
+    color: var(--GXGrey);
+    position: absolute;
+    top: 9em;
+    left: 1em;
+    padding: 0.7em;
+    width:115px;
+    height: 40px;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
+
+
+
+
+
 
    
