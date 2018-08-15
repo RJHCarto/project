@@ -14,8 +14,6 @@ function getIntersect() {
 
     for (var i = 0; i < mapB.getStyle().layers.length; i++) {
         if ( mapB.getStyle().layers[i].id == 'HighlightedBuildings' ) {
-            // mapB.removeLayer('IntersectPoints');
-            // mapB.removeSource('IntersectPoints');
             mapB.removeLayer('HighlightedBuildings');
             mapB.removeSource('HighlightedBuildings');
             map.removeLayer('HighlightedBuildings');
@@ -24,7 +22,20 @@ function getIntersect() {
         }
     }
 
-    console.log(" --Performing Intersect-- ")
+    console.log(" --Error Check-- ")
+
+    if (draw.getAll().features.length == 0) {
+        swal({
+            title: '<strong>Building Height Profile</strong>',
+            type: 'info',
+            html:
+            'You must first draw a segment through buildings to get a height profile',
+            showCloseButton: true,
+        });
+        // alert("You must first draw a segment through buildings to get a height profile");
+        return;
+    }
+
     var drawnLine = draw.getAll();
     var layerFeatures = turf.featureCollection(SELECTED_LAYER_JSON.features);
     intersectingFeatures = turf.lineIntersect(drawnLine, layerFeatures);
@@ -34,6 +45,7 @@ function getIntersect() {
         interArray.push(intersectingFeatures.features[i].geometry.coordinates)
     }
     interArray = interArray.sort();
+
 
     console.log("--Making point distance array--");
     for (var i = 0; i < interArray.length-1; i++) {

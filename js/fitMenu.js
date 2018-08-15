@@ -32,6 +32,12 @@ function switchLayer(layer) {
     // set layer id to a menu value
     // If id = UCL
     if (layer == 'UCL') {
+        swal({
+            title: '<strong>Large layer Loading</strong>',
+            type: 'info',
+            showCloseButton: true,
+        });
+        // alert("This is a large layer and may take a while to load, please wait.");
         map.setLayoutProperty('EatonBray', 'visibility', 'none');
         map.setLayoutProperty('Wavendon', 'visibility', 'none');
         map.setLayoutProperty('UCL', 'visibility', 'visible');
@@ -58,14 +64,15 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('UCL', 'visibility', 'none');
     }
     getLayerGeoJSON(layer).then((json) => {
-        console.dir(json)
+        console.dir(json);
         SELECTED_LAYER_JSON = json;
-        console.log("SELECTED LAYER COORDS CHANGED")
+        console.log("SELECTED LAYER COORDS CHANGED");
         bboxFromJSON(json).then((bbox) => {
             SELECTED_LAYER_BBOX = bbox;
             fit(bbox)
         });
     });
+    loading_screen.finish();
 }
 
 for (var i = 0; i < inputs.length; i++) {
