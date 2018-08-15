@@ -5,9 +5,9 @@
  */
 
 function getLayerGeoJSON(layer) {
-    console.log(" -- getLayerGeoJSON --")
+    console.log(" -- getLayerGeoJSON --");
     return new Promise((resolve, reject) => {
-        $.getJSON(herokuURL.concat(window[layer]), function (data) {
+        $.getJSON((window[layer]), function (data) {
             resolve(data)
         });
     });
