@@ -28,6 +28,7 @@ var SELECTED_LAYER_ID;
 
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
+var herokuURL = 'https://disso-gx-test.herokuapp.com/';
 var baseURL = 'http://localhost:' + 8000 + '/';
 var data = 'data';
 var EatonBray = 'data/EatonBray.json';
