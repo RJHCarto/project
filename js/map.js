@@ -37,7 +37,7 @@ var point;
 var layerId;
 var coordsList = [];
 var selectedBuildings;
-
+var hasLoaded = false;
 
 
 // mapB.on('mousemove', function (e) {
@@ -91,6 +91,7 @@ mapB.on("move", function () {
 });
 
 map.on('load', function () {
+    hasLoaded = true;
     map.addSource('EatonBray', {
         type: 'geojson',
         data: EatonBray

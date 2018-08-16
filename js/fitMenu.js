@@ -26,12 +26,14 @@ function fit(bbox) {
 }
 
 function switchLayer(layer) {
-    console.dir(layer)
+    console.log("--Map Loading--");
+    console.log(hasLoaded);
+    console.dir(layer);
     SELECTED_LAYER_ID = layer;
     //layerId = layer.target.id;
     // set layer id to a menu value
     // If id = UCL
-    if (layer == 'UCL') {
+    if (layer == 'UCL' && hasLoaded) {
         swal({
             title: '<strong>Large layer Loading</strong>',
             type: 'info',
@@ -46,7 +48,7 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('UCL', 'visibility', 'visible');
     }
     // If id = Wavendon
-    if (layer == 'Wavendon') {
+    if (layer == 'Wavendon' && hasLoaded) {
         map.setLayoutProperty('EatonBray', 'visibility', 'none');
         map.setLayoutProperty('Wavendon', 'visibility', 'visible');
         map.setLayoutProperty('UCL', 'visibility', 'none');
@@ -55,7 +57,7 @@ function switchLayer(layer) {
         mapB.setLayoutProperty('UCL', 'visibility', 'none');
     }
     // Else id = EatonBray
-    if (layer == 'EatonBray') {
+    if (layer == 'EatonBray' && hasLoaded) {
         map.setLayoutProperty('EatonBray', 'visibility', 'visible');
         map.setLayoutProperty('Wavendon', 'visibility', 'none');
         map.setLayoutProperty('UCL', 'visibility', 'none');
