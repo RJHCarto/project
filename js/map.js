@@ -37,20 +37,8 @@ var point;
 var layerId;
 var coordsList = [];
 var selectedBuildings;
-var hasLoaded = false;
 var holder = document.getElementById("chartHolder");
-
-
-
-// mapB.on('mousemove', function (e) {
-//     document.getElementById('info').innerHTML =
-//         // e.point is the x, y coordinates of the mousemove event relative
-//         // to the top-left corner of the map
-//         JSON.stringify(e.point) + '<br />' +
-//         // e.lngLat is the longitude, latitude geographical position of the event
-//         JSON.stringify(e.lngLat);
-// });
-
+var hasLoaded = false;
 
 // Draw Tools
 var draw = new MapboxDraw({

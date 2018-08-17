@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65513d8b-0e9f-44e9-b089-445898976761" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/map.js" afterDir="false" />
     </list>
@@ -25,8 +23,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
+            <state relative-caret-position="493">
+              <caret line="74" column="16" lean-forward="true" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
                 <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
@@ -38,8 +36,8 @@
       <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4369">
-              <caret line="274" column="29" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
+            <state relative-caret-position="2975">
+              <caret line="189" column="7" lean-forward="true" selection-start-line="189" selection-start-column="7" selection-end-line="189" selection-end-column="7" />
               <folding>
                 <element signature="e#151#343#0" />
                 <element signature="e#375#567#0" />
@@ -48,28 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clickInfo.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/clickInfo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="similar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/similar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-321">
-              <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fitMenu.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fitMenu.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/fitMenu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-841">
+            <state relative-caret-position="221">
               <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
             </state>
           </provider>
@@ -183,10 +163,10 @@
         <option value="$PROJECT_DIR$/js/fitMenu.js" />
         <option value="$PROJECT_DIR$/js/intersect.js" />
         <option value="$PROJECT_DIR$/css/mapbox-gl.css" />
-        <option value="$PROJECT_DIR$/js/map.js" />
         <option value="$PROJECT_DIR$/js/clickInfo.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/map.js" />
       </list>
     </option>
   </component>
@@ -211,7 +191,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="1944" />
@@ -292,12 +272,12 @@
       <workItem from="1531434176792" duration="80499000" />
       <workItem from="1531929203011" duration="39151000" />
       <workItem from="1532190595091" duration="113709000" />
-      <workItem from="1533997372588" duration="37319000" />
+      <workItem from="1533997372588" duration="37754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="306038000" />
+    <option name="totallyTimeSpent" value="306473000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -312,7 +292,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.47945204" visible="true" weight="0.3163752" />
+      <window_info content_ui="combo" x="0" y="30" width="639" height="650" id="Project" order="1" sideWeight="0.4779412" visible="true" weight="0.3163752" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.32976827" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.3272059" />
@@ -321,7 +301,7 @@
       <window_info anchor="bottom" id="Run" order="5" />
       <window_info id="npm" order="0" sideWeight="0.5128676" side_tool="true" weight="0.21621622" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.24960254" />
-      <window_info x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.5205479" side_tool="true" weight="0.3163752" />
+      <window_info active="true" x="-297" y="430" width="1281" height="215" id="Terminal" order="4" sideWeight="0.52205884" side_tool="true" visible="true" weight="0.3163752" />
       <window_info id="Favorites" order="2" sideWeight="0.50098234" side_tool="true" weight="0.2576244" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -577,49 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/fitMenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-841">
-          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/intersect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="189" column="33" selection-start-line="189" selection-start-column="33" selection-end-line="189" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/similar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-321">
-          <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4369">
-          <caret line="274" column="29" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
-          <folding>
-            <element signature="e#151#343#0" />
-            <element signature="e#375#567#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -631,6 +568,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/similar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-321">
+          <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/intersect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="189" column="33" selection-start-line="189" selection-start-column="33" selection-end-line="189" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="74" column="16" lean-forward="true" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2975">
+          <caret line="189" column="7" lean-forward="true" selection-start-line="189" selection-start-column="7" selection-end-line="189" selection-end-column="7" />
+          <folding>
+            <element signature="e#151#343#0" />
+            <element signature="e#375#567#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/fitMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
