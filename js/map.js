@@ -59,6 +59,13 @@ var draw = new MapboxDraw({
         line_string: true
     }
 });
+
+
+map.addControl(new mapboxgl.ScaleControl({
+    maxWidth: 100,
+    unit: 'metric'
+}));
+
 mapB.addControl(draw, 'top-right');
 
 // Tracking
@@ -266,16 +273,6 @@ mapB.on('load', function () {
      * Switch the default layer on
      */
     switchLayer('EatonBray');
-
-
-
-
-    map.on('click', SELECTED_LAYER_ID, function (e) {
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML("Building ID: " + e.features[0].properties.OBJECTID + "</br> Building Height: " + (e.features[0].properties.relh2).toFixed(1) + 'm')
-            .addTo(map);
-    });
 
 });
 

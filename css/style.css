@@ -90,6 +90,7 @@ body.pg-loaded > .inner {
     width: 48.5%;
 }
 
+
 #holderText {
     colour: var(--GXBlue);
     text-align: center;
@@ -114,26 +115,25 @@ body.pg-loaded > .inner {
 }
 
 
-/*#info {*/
-/*display: block;*/
-/*position: relative;*/
-/*margin: 0px auto;*/
-/*width: 50%;*/
-/*padding: 10px;*/
-/*border: none;*/
-/*border-radius: 3px;*/
-/*font-size: 12px;*/
-/*text-align: center;*/
-/*color: #222;*/
-/*background: #fff;*/
-/*}*/
-
-
 #menu {
     background-color: var(--GXBlue);
     position: absolute;
     z-index: 1;
     top: 1em;
+    right: 1em;
+    border-radius: 0.2em;
+    padding: 0.7em;
+    width: 100px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    color: var(--GXGrey);
+    cursor: pointer;
+}
+
+#click {
+    background-color: var(--GXBlue);
+    position: absolute;
+    z-index: 1;
+    top: 9.5em;
     right: 1em;
     border-radius: 0.2em;
     padding: 0.7em;
