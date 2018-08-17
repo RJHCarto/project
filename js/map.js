@@ -38,6 +38,8 @@ var layerId;
 var coordsList = [];
 var selectedBuildings;
 var hasLoaded = false;
+var holder = document.getElementById("chartHolder");
+
 
 
 // mapB.on('mousemove', function (e) {
@@ -268,12 +270,12 @@ mapB.on('load', function () {
 
 
 
-    // mapB.on('click', SELECTED_LAYER_ID, function (e) {
-    //     new mapboxgl.Popup()
-    //         .setLngLat(e.lngLat)
-    //         .setHTML("Building ID: " + e.features[0].properties.OBJECTID + "</br> Building Height: " + e.features[0].properties.relh2)
-    //         .addTo(mapB);
-    // });
+    map.on('click', SELECTED_LAYER_ID, function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML("Building ID: " + e.features[0].properties.OBJECTID + "</br> Building Height: " + (e.features[0].properties.relh2).toFixed(1) + 'm')
+            .addTo(map);
+    });
 
 });
 

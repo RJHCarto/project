@@ -32,7 +32,6 @@ function getIntersect() {
             'You must first draw a segment through buildings to get a height profile',
             showCloseButton: true,
         });
-        // alert("You must first draw a segment through buildings to get a height profile");
         return;
     }
 
@@ -99,9 +98,11 @@ function getIntersect() {
 
     selectedBuildings = turf.featureCollection(uniqueBuildings);
 
-    // for (var i = 0; i < selectedBuildings.features.length; i++) {
-    //     buildingHeights.push((selectedBuildings.features[i].properties.relh2).toFixed(1));
-    // }
+    heightWord = [];
+
+    for (var i = 0; i < buildingHeights.length ; i++) {
+        heightWord.push('Height (m)')
+    }
 
     chart = document.getElementById('chart');
 
@@ -111,10 +112,16 @@ function getIntersect() {
         x: sumWidths,
         y: buildingHeights,
         width: interDist,
+        text: heightWord,
         marker: {
-            color: '#5CA8A6'
+            color: '#5CA8A6',
+            opacity: 0.6,
+            line: {
+                color: '#263746',
+                width: 1
+            }
         }
-    }
+    };
 
     var data = [heightGraph];
 
@@ -127,6 +134,7 @@ function getIntersect() {
 
     Plotly.plot(chart, data, layout);
 
+    holder.style.display = "none";
 
     console.log("--Highlighting Buildings--")
 
@@ -179,5 +187,6 @@ function removeIntersect() {
             break
         }
     }
-    Plotly.deleteTraces(chart,0);
+    holder.style.display = "block";
+    Plotly.purge(chart);
 }
