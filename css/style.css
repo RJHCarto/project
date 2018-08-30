@@ -68,8 +68,8 @@ body.pg-loaded > .inner {
     --GXGrey: #D8D1CA;
 }
 
-#map { position:absolute; top:0; bottom:0; right:0; width:50%; height:100%}
-#mapB { position:absolute; top:0; bottom:0; left:0; width:49.5%; height:50% }
+#map3D { position:absolute; top:0; bottom:0; right:0; width:50%; height:100%}
+#map2D { position:absolute; top:0; bottom:0; left:0; width:49.5%; height:50% }
 #chart {
     position:absolute;
     font-family: Helvetica, Arial, Sans-Serif;

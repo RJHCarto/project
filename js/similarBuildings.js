@@ -4,14 +4,14 @@ var relatedFeatures;
 
 function showing(e) {
     // Change the cursor style as a UI indicator.
-    mapB.getCanvas().style.cursor = 'pointer';
+    map2D.getCanvas().style.cursor = 'pointer';
 
     // Single out the first found feature.
     var feature = e.features[0];
 
-    // Query the counties layer visible in the map. Use the filter
+    // Query the counties layer visible in the map3D. Use the filter
     // param to only collect results that share the same county name.
-    relatedFeatures = mapB.querySourceFeatures(SELECTED_LAYER_ID, {
+    relatedFeatures = map2D.querySourceFeatures(SELECTED_LAYER_ID, {
         filter: ['in', 'relh2', feature.properties.relh2]
     });
 
@@ -30,30 +30,30 @@ function showing(e) {
     overlay.style.display = 'block';
 
     // Add features that share the same county name to the highlighted layer.
-    mapB.setFilter('similarBuildings', ['in', 'relh2', feature.properties.relh2]);
-    map.setFilter('similarBuildings', ['in', 'relh2', feature.properties.relh2]);
+    map2D.setFilter('similarBuildings', ['in', 'relh2', feature.properties.relh2]);
+    map3D.setFilter('similarBuildings', ['in', 'relh2', feature.properties.relh2]);
 
 }
 
 function hiding() {
-    mapB.getCanvas().style.cursor = '';
-    mapB.setFilter('similarBuildings', ['in', 'relh2', '']);
-    map.setFilter('similarBuildings', ['in', 'relh2', '']);
+    map2D.getCanvas().style.cursor = '';
+    map2D.setFilter('similarBuildings', ['in', 'relh2', '']);
+    map3D.setFilter('similarBuildings', ['in', 'relh2', '']);
     overlay.style.display = 'none';
 }
 
 
 function similar() {
 
-    for (var i = 0; i < mapB.getStyle().layers.length; i++) {
-        if ( mapB.getStyle().layers[i].id == 'similarBuildings' ) {
-            mapB.removeLayer('similarBuildings');
-            map.removeLayer('similarBuildings');
+    for (var i = 0; i < map2D.getStyle().layers.length; i++) {
+        if ( map2D.getStyle().layers[i].id == 'similarBuildings' ) {
+            map2D.removeLayer('similarBuildings');
+            map3D.removeLayer('similarBuildings');
             break
         }
     }
 
-    mapB.addLayer({
+    map2D.addLayer({
         id: 'similarBuildings',
         source: SELECTED_LAYER_ID,
         type: 'fill',
@@ -64,7 +64,7 @@ function similar() {
         filter: ['in', 'relh2', '']
     });
 
-    map.addLayer({
+    map3D.addLayer({
         id: 'similarBuildings',
         source: SELECTED_LAYER_ID,
         type: 'fill-extrusion',
@@ -80,14 +80,14 @@ function similar() {
         filter: ['in', 'relh2', '']
     });
 
-    mapB.on('mousemove', SELECTED_LAYER_ID, showing);
+    map2D.on('mousemove', SELECTED_LAYER_ID, showing);
 
-    mapB.on('mouseleave', SELECTED_LAYER_ID, hiding);
+    map2D.on('mouseleave', SELECTED_LAYER_ID, hiding);
 }
 
 function similarOff() {
 
-    mapB.off('mousemove', SELECTED_LAYER_ID, showing);
+    map2D.off('mousemove', SELECTED_LAYER_ID, showing);
 
-    mapB.off('mouseleave', SELECTED_LAYER_ID, hiding);
+    map2D.off('mouseleave', SELECTED_LAYER_ID, hiding);
 }

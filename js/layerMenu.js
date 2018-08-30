@@ -21,8 +21,8 @@ function bboxFromJSON(json) {
 
 function fit(bbox) {
     let bboxToUse = bbox || SELECTED_LAYER_BBOX;
-    map.fitBounds(bboxToUse, {padding: 20});
-    mapB.fitBounds(bboxToUse, {padding: 20});
+    map3D.fitBounds(bboxToUse, {padding: 20});
+    map2D.fitBounds(bboxToUse, {padding: 20});
 }
 
 function switchLayer(layer) {
@@ -40,30 +40,30 @@ function switchLayer(layer) {
             showCloseButton: true,
         });
         // alert("This is a large layer and may take a while to load, please wait.");
-        map.setLayoutProperty('EatonBray', 'visibility', 'none');
-        map.setLayoutProperty('Wavendon', 'visibility', 'none');
-        map.setLayoutProperty('UCL', 'visibility', 'visible');
-        mapB.setLayoutProperty('EatonBray', 'visibility', 'none');
-        mapB.setLayoutProperty('Wavendon', 'visibility', 'none');
-        mapB.setLayoutProperty('UCL', 'visibility', 'visible');
+        map3D.setLayoutProperty('EatonBray', 'visibility', 'none');
+        map3D.setLayoutProperty('Wavendon', 'visibility', 'none');
+        map3D.setLayoutProperty('UCL', 'visibility', 'visible');
+        map2D.setLayoutProperty('EatonBray', 'visibility', 'none');
+        map2D.setLayoutProperty('Wavendon', 'visibility', 'none');
+        map2D.setLayoutProperty('UCL', 'visibility', 'visible');
     }
     // If id = Wavendon
     if (layer == 'Wavendon' && hasLoaded) {
-        map.setLayoutProperty('EatonBray', 'visibility', 'none');
-        map.setLayoutProperty('Wavendon', 'visibility', 'visible');
-        map.setLayoutProperty('UCL', 'visibility', 'none');
-        mapB.setLayoutProperty('EatonBray', 'visibility', 'none');
-        mapB.setLayoutProperty('Wavendon', 'visibility', 'visible');
-        mapB.setLayoutProperty('UCL', 'visibility', 'none');
+        map3D.setLayoutProperty('EatonBray', 'visibility', 'none');
+        map3D.setLayoutProperty('Wavendon', 'visibility', 'visible');
+        map3D.setLayoutProperty('UCL', 'visibility', 'none');
+        map2D.setLayoutProperty('EatonBray', 'visibility', 'none');
+        map2D.setLayoutProperty('Wavendon', 'visibility', 'visible');
+        map2D.setLayoutProperty('UCL', 'visibility', 'none');
     }
     // Else id = EatonBray
     if (layer == 'EatonBray' && hasLoaded) {
-        map.setLayoutProperty('EatonBray', 'visibility', 'visible');
-        map.setLayoutProperty('Wavendon', 'visibility', 'none');
-        map.setLayoutProperty('UCL', 'visibility', 'none');
-        mapB.setLayoutProperty('EatonBray', 'visibility', 'visible');
-        mapB.setLayoutProperty('Wavendon', 'visibility', 'none');
-        mapB.setLayoutProperty('UCL', 'visibility', 'none');
+        map3D.setLayoutProperty('EatonBray', 'visibility', 'visible');
+        map3D.setLayoutProperty('Wavendon', 'visibility', 'none');
+        map3D.setLayoutProperty('UCL', 'visibility', 'none');
+        map2D.setLayoutProperty('EatonBray', 'visibility', 'visible');
+        map2D.setLayoutProperty('Wavendon', 'visibility', 'none');
+        map2D.setLayoutProperty('UCL', 'visibility', 'none');
     }
     getLayerGeoJSON(layer).then((json) => {
         console.dir(json);

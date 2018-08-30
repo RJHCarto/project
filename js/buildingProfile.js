@@ -12,12 +12,12 @@ function getIntersect() {
     var selectedBuildings;
     var heightGraph;
 
-    for (var i = 0; i < mapB.getStyle().layers.length; i++) {
-        if ( mapB.getStyle().layers[i].id == 'HighlightedBuildings' ) {
-            mapB.removeLayer('HighlightedBuildings');
-            mapB.removeSource('HighlightedBuildings');
-            map.removeLayer('HighlightedBuildings');
-            map.removeSource('HighlightedBuildings');
+    for (var i = 0; i < map2D.getStyle().layers.length; i++) {
+        if ( map2D.getStyle().layers[i].id == 'HighlightedBuildings' ) {
+            map2D.removeLayer('HighlightedBuildings');
+            map2D.removeSource('HighlightedBuildings');
+            map3D.removeLayer('HighlightedBuildings');
+            map3D.removeSource('HighlightedBuildings');
             break
         }
     }
@@ -83,7 +83,10 @@ function getIntersect() {
     for (var i = 0; i < avgArrayPoints.length; i++) {
         height = 0;
         for (var j = 0; j < SELECTED_LAYER_JSON.features.length ; j++) {
-            var status = turf.booleanPointInPolygon(avgArrayPoints[i],SELECTED_LAYER_JSON.features[j]);
+            var status = turf.booleanPointInPolygon(
+                avgArrayPoints[i],
+                SELECTED_LAYER_JSON.features[j]
+            );
             if (status == true) {
                 buildingFeatures.push(SELECTED_LAYER_JSON.features[j]);
                 height = SELECTED_LAYER_JSON.features[j].properties.relh2;
@@ -138,12 +141,12 @@ function getIntersect() {
 
     console.log("--Highlighting Buildings--")
 
-    mapB.addSource('HighlightedBuildings', {
+    map2D.addSource('HighlightedBuildings', {
         type: 'geojson',
         data: selectedBuildings
     });
 
-    mapB.addLayer({
+    map2D.addLayer({
         id: 'HighlightedBuildings',
         source: 'HighlightedBuildings',
         type: 'fill',
@@ -153,12 +156,12 @@ function getIntersect() {
         },
     });
 
-    map.addSource('HighlightedBuildings', {
+    map3D.addSource('HighlightedBuildings', {
         type: 'geojson',
         data: selectedBuildings
     });
 
-    map.addLayer({
+    map3D.addLayer({
         id: 'HighlightedBuildings',
         source: 'HighlightedBuildings',
         type: 'fill-extrusion',
@@ -178,12 +181,12 @@ function getIntersect() {
 
 function removeIntersect() {
     draw.deleteAll(draw.getAll());
-    for (var i = 0; i < mapB.getStyle().layers.length; i++) {
-        if (mapB.getStyle().layers[i].id == 'HighlightedBuildings') {
-            mapB.removeLayer('HighlightedBuildings');
-            map.removeLayer('HighlightedBuildings');
-            mapB.removeSource('HighlightedBuildings');
-            map.removeSource('HighlightedBuildings');
+    for (var i = 0; i < map2D.getStyle().layers.length; i++) {
+        if (map2D.getStyle().layers[i].id == 'HighlightedBuildings') {
+            map2D.removeLayer('HighlightedBuildings');
+            map3D.removeLayer('HighlightedBuildings');
+            map2D.removeSource('HighlightedBuildings');
+            map3D.removeSource('HighlightedBuildings');
             break
         }
     }
